@@ -1,0 +1,554 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows10.0.18362.0</TargetFramework>
+    <UseWPF>true</UseWPF> 
+    <CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
+    <StartupObject>WoWonderDesktop.App</StartupObject>
+    <ApplicationIcon>Images\icon.ico</ApplicationIcon>
+    <Win32Resource />
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <LangVersion>9</LangVersion>
+    <AssemblyName>WoWonderDesktop</AssemblyName>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Prefer32Bit>true</Prefer32Bit>
+    <Optimize>false</Optimize>
+    <IncludeMaterialDesignFont>True</IncludeMaterialDesignFont>
+    <MaterialDesignFontDirectory>Fonts\</MaterialDesignFontDirectory>
+    <NoWarn>1701;1702;CS0618;SYSLIB0039;</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <IncludeMaterialDesignFont>True</IncludeMaterialDesignFont>
+    <MaterialDesignFontDirectory>Fonts\</MaterialDesignFontDirectory>
+    <NoWarn>1701;1702;CS0618;SYSLIB0039;</NoWarn>
+  </PropertyGroup>
+ 
+  <ItemGroup>
+    <None Remove="Fonts\ionicons.ttf" />
+    <None Remove="Fonts\Roboto-Black.ttf" />
+    <None Remove="Fonts\Roboto-BlackItalic.ttf" />
+    <None Remove="Fonts\Roboto-Bold.ttf" />
+    <None Remove="Fonts\Roboto-BoldItalic.ttf" />
+    <None Remove="Fonts\Roboto-Italic.ttf" />
+    <None Remove="Fonts\Roboto-Light.ttf" />
+    <None Remove="Fonts\Roboto-LightItalic.ttf" />
+    <None Remove="Fonts\Roboto-Medium.ttf" />
+    <None Remove="Fonts\Roboto-MediumItalic.ttf" />
+    <None Remove="Fonts\Roboto-Regular.ttf" />
+    <None Remove="Fonts\Roboto-Thin.ttf" />
+    <None Remove="Fonts\Roboto-ThinItalic.ttf" />
+    <None Remove="Images\affs.png" />
+    <None Remove="Images\Audio_File.png" />
+    <None Remove="Images\Backgrounds\44.jpg" />
+    <None Remove="Images\Backgrounds\emoji-background.jpg" />
+    <None Remove="Images\Backgrounds\signup_bg.png" />
+    <None Remove="Images\cancel.png" />
+    <None Remove="Images\Cover_image.png" />
+    <None Remove="Images\Drewie.jpg" />
+    <None Remove="Images\Emoji_Icons\Angel Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Angry Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Angry Face.png" />
+    <None Remove="Images\Emoji_Icons\Bawling Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Breaking Heart Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Cheeky Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Cool Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Crazy Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Cringe Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Crying Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Devil Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Dissatisfied Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Face With Straight Mouth Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Flirting Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Happy Face Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Heart Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Heart Eyes Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Heavy Exclamation.png" />
+    <None Remove="Images\Emoji_Icons\Kissing Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Laughing Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Love Heart.png" />
+    <None Remove="Images\Emoji_Icons\love.png" />
+    <None Remove="Images\Emoji_Icons\Lovestruck Emoji.png" />
+    <None Remove="Images\Emoji_Icons\NormalSmile.png" />
+    <None Remove="Images\Emoji_Icons\Pained Face Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Puzzled Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Red Face Emoji.png" />
+    <None Remove="Images\Emoji_Icons\sad.png" />
+    <None Remove="Images\Emoji_Icons\Sadface Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Scream Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Smile.png" />
+    <None Remove="Images\Emoji_Icons\Smiling Face.png" />
+    <None Remove="Images\Emoji_Icons\Sparkling Heart.png" />
+    <None Remove="Images\Emoji_Icons\Star Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Straight Faced Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Surprised Emoji.png" />
+    <None Remove="Images\Emoji_Icons\Wink Emoji.png" />
+    <None Remove="Images\File\File_apk.png" />
+    <None Remove="Images\File\File_doc.png" />
+    <None Remove="Images\File\File_gif.png" />
+    <None Remove="Images\File\File_image.png" />
+    <None Remove="Images\File\File_mp3.png" />
+    <None Remove="Images\File\File_music.png" />
+    <None Remove="Images\File\File_pdf.png" />
+    <None Remove="Images\File\File_record.png" />
+    <None Remove="Images\File\File_sticker.png" />
+    <None Remove="Images\File\File_text.png" />
+    <None Remove="Images\File\File_txt.png" />
+    <None Remove="Images\File\File_video.png" />
+    <None Remove="Images\File\File_zip.png" />
+    <None Remove="Images\gallery.jpg" />
+    <None Remove="Images\icon.ico" />
+    <None Remove="Images\icon.png" />
+    <None Remove="Images\ImagePlacholder.png" />
+    <None Remove="Images\ImagePlacholder_circle_grey.png" />
+    <None Remove="Images\Image_File.png" />
+    <None Remove="Images\Image_Map.png" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\no_profile_image_circle.png" />
+    <None Remove="Images\Reaction\gif_angry.gif" />
+    <None Remove="Images\Reaction\gif_haha.gif" />
+    <None Remove="Images\Reaction\gif_like.gif" />
+    <None Remove="Images\Reaction\gif_love.gif" />
+    <None Remove="Images\Reaction\gif_sad.gif" />
+    <None Remove="Images\Reaction\gif_wow.gif" />
+    <None Remove="Images\Stickers\Sticker1.png" />
+    <None Remove="Images\Stickers\Sticker10.png" />
+    <None Remove="Images\Stickers\sticker11.png" />
+    <None Remove="Images\Stickers\sticker2.png" />
+    <None Remove="Images\Stickers\Sticker3.png" />
+    <None Remove="Images\Stickers\Sticker4.png" />
+    <None Remove="Images\Stickers\Sticker5.png" />
+    <None Remove="Images\Stickers\Sticker6.png" />
+    <None Remove="Images\Stickers\Sticker7.png" />
+    <None Remove="Images\Stickers\Sticker8.png" />
+    <None Remove="Images\Stickers\Sticker9.png" />
+    <None Remove="Images\WowonderBackroundiamge.jpg" />
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <Page Remove="Images\icons.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="cef.redist.x64" Version="110.0.25" />
+    <PackageReference Include="cef.redist.x86" Version="110.0.25" />
+    <PackageReference Include="CefSharp.Common.NETCore" Version="110.0.250" />
+    <PackageReference Include="CefSharp.Wpf.NETCore" Version="110.0.250" />
+    <PackageReference Include="CommunityToolkit.WinUI.Notifications" Version="7.1.2" />
+    <PackageReference Include="Fody" Version="6.6.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="GoogleMaps.LocationServices" Version="1.2.0.5" />
+    <PackageReference Include="MaterialDesignColors" Version="2.1.1" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.7.1" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" PrivateAssets="All" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="2.1.4" />
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+    <PackageReference Include="System.Memory" Version="4.5.5" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+    <PackageReference Include="System.Reactive.Core" Version="5.0.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\ionicons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-BlackItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-BoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-Italic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-LightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-MediumItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-Thin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\Roboto-ThinItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\affs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Audio_File.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Backgrounds\44.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Backgrounds\emoji-background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Backgrounds\signup_bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\cancel.png" />
+    <Resource Include="Images\Cover_image.png" />
+    <Resource Include="Images\Drewie.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Angel Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Angry Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Angry Face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Bawling Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Breaking Heart Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Cheeky Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Cool Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Crazy Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Cringe Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Crying Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Devil Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Dissatisfied Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Face With Straight Mouth Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Flirting Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Happy Face Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Heart Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Heart Eyes Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Heavy Exclamation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Kissing Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Laughing Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Love Heart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\love.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Lovestruck Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\NormalSmile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Pained Face Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Puzzled Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Red Face Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\sad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Sadface Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Scream Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Smile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Smiling Face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Sparkling Heart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Star Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Straight Faced Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Surprised Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Emoji_Icons\Wink Emoji.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\File\File_apk.png" />
+    <Resource Include="Images\File\File_doc.png" />
+    <Resource Include="Images\File\File_gif.png" />
+    <Resource Include="Images\File\File_image.png" />
+    <Resource Include="Images\File\File_mp3.png" />
+    <Resource Include="Images\File\File_music.png" />
+    <Resource Include="Images\File\File_pdf.png" />
+    <Resource Include="Images\File\File_record.png" />
+    <Resource Include="Images\File\File_sticker.png" />
+    <Resource Include="Images\File\File_text.png" />
+    <Resource Include="Images\File\File_txt.png" />
+    <Resource Include="Images\File\File_video.png" />
+    <Resource Include="Images\File\File_zip.png" />
+    <Resource Include="Images\gallery.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ImagePlacholder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ImagePlacholder_circle_grey.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Image_File.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Image_Map.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\no_profile_image_circle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Reaction\gif_angry.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Reaction\gif_haha.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Reaction\gif_like.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Reaction\gif_love.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Reaction\gif_sad.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Reaction\gif_wow.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\Sticker1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\Sticker10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\sticker11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\sticker2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\Sticker3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\Sticker4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\Sticker5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\Sticker6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\Sticker7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\Sticker8.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Stickers\Sticker9.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\WowonderBackroundiamge.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="language\LocalResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LocalResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="language\LocalResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Forms\ForwardMessageWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Forms\MessageInfoWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Buttons.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\Cards.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\Colors.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\Fonts.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\Icons.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\ListBoxView.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\MaterialColors.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\TabControl.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\Texts.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\ToggleButton.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Update="Styles\Windows.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="110.0.25" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="110.0.25" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\wael\.nuget\packages\materialdesignthemes\4.1.0\build\Resources\Roboto\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SocketIOClient">
+      <HintPath>..\API\SocketIOClient.dll</HintPath>
+    </Reference>
+    <Reference Include="WoWonderClient">
+      <HintPath>..\API\WoWonderClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="110.0.25" />
+  </ItemGroup>
+
+</Project>

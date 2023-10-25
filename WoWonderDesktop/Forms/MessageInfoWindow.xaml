@@ -1,0 +1,98 @@
+﻿<Window x:Class="WoWonderDesktop.Forms.MessageInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoWonderDesktop.Forms"
+        xmlns:properties="clr-namespace:WoWonderDesktop.language"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Grayscale"
+        FontFamily="{StaticResource Roboto}"
+        Title="MessageInfo" Height="170" Width="450" >
+
+    <Window.Resources>
+        <Style TargetType="{x:Type local:MessageInfoWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <!-- Outer border with the dropshadow margin -->
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                            <!-- Main window outline  -->
+                            <Grid>
+                                <!-- Opacity mask for corners on grid -->
+                                <Border x:Name="Container"
+                                        Background="{StaticResource BackgroundLightBrush}"
+                                        CornerRadius="10" />
+                                <!-- Window border and dropshadown -->
+                                <Border CornerRadius="10"
+                                        Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <!-- The main window content -->
+                                <Grid Loaded="FrameworkElement_OnLoaded">
+                                    <!-- Corner clipping -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+                                    <Grid.RowDefinitions>
+                                        <!-- Title Bar -->
+                                        <RowDefinition Height="2" />
+                                        <!-- Window Content -->
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <!-- Title Bar -->
+
+                                    <!-- Page Content -->
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="6" CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0" />
+    </WindowChrome.WindowChrome>
+
+    <Border x:Name="BorderMain"  Padding="5" >
+        <Grid>
+            <StackPanel Margin="3">
+                <Label x:Name="TxtMessageInfo" Margin="0 0 0 10" FontWeight="SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center"
+                           FontFamily="{StaticResource RobotoRegular}" FontSize="16">
+                        <Label.Content>
+                        <AccessText TextWrapping="Wrap" Text="{x:Static properties:LocalResources.label5_MessageInfo}"/>
+                        </Label.Content>
+                    </Label>
+
+                <Label x:Name="LblRead" FontWeight="SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center"
+                           FontFamily="{StaticResource RobotoRegular}" FontSize="13">
+                        <Label.Content>
+                        <AccessText TextWrapping="Wrap" Text="{x:Static properties:LocalResources.label5_Read}"/>
+                        </Label.Content>
+                    </Label>
+                <Label x:Name="LblDelivered" FontWeight="SemiBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center"
+                           FontFamily="{StaticResource RobotoRegular}" FontSize="13">
+                        <Label.Content>
+                        <AccessText TextWrapping="Wrap" Text="{x:Static properties:LocalResources.label5_Delivered}"/>
+                        </Label.Content>
+                    </Label>
+                             
+                <Button x:Name="BtnCancel" FontWeight="SemiBold" Margin="0 5 0 0"
+                        FontStretch="Condensed" FontFamily="{StaticResource RobotoBold}" 
+                        Background="Transparent" HorizontalContentAlignment="Right" HorizontalAlignment="Right" 
+                        BorderBrush="Transparent" Content="{x:Static properties:LocalResources.label5_Close}" Foreground="{StaticResource WownderDefaultBrush}"
+                        FontSize="15" Click="Btn_cancel_OnClick"
+                />
+               
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

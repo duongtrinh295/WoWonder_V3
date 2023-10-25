@@ -1,0 +1,106 @@
+﻿<Window x:Class="WoWonderDesktop.Forms.NotificationsControlWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoWonderDesktop.Forms"
+        xmlns:properties="clr-namespace:WoWonderDesktop.language"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Grayscale"
+        FontFamily="{StaticResource Roboto}"
+        Title="NotificationsControlWindow" Height="250" Width="495" >
+
+    <Window.Resources>
+        <Style TargetType="{x:Type local:NotificationsControlWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <!-- Outer border with the dropshadow margin -->
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                            <!-- Main window outline -->
+                            <Grid>
+                                <!-- Opacity mask for corners on grid -->
+                                <Border x:Name="Container"
+                                        Background="{StaticResource BackgroundLightBrush}"
+                                        CornerRadius="10" />
+                                <!-- Window border and dropshadown -->
+                                <Border CornerRadius="10"
+                                        Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <!-- The main window content -->
+                                <Grid Loaded="FrameworkElement_OnLoaded">
+                                    <!-- Corner clipping -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+                                    <Grid.RowDefinitions>
+                                        <!-- Title Bar -->
+                                        <RowDefinition Height="2" />
+                                        <!-- Window Content -->
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <!-- Title Bar -->
+
+                                    <!-- Page Content -->
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="6" CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0" />
+    </WindowChrome.WindowChrome>
+ 
+    <Border x:Name="Border" Padding="15" >
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2" />
+                <RowDefinition Height="55" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1">
+                <Label x:Name="Lbl_Conversation_Notifications" Content="{x:Static properties:LocalResources.label_Conversation_Notifications}" FontWeight="SemiBold" HorizontalAlignment="Center" FontFamily="{StaticResource RobotoBold}" FontSize="14" />
+                <Label x:Name="Lbl_Control_your_Notifications" Content="{x:Static properties:LocalResources.label_Control_your_Notifications}" FontWeight="Normal" HorizontalAlignment="Center" FontFamily="{StaticResource RobotoRegular}" FontSize="13" />
+            </StackPanel>
+
+
+            <Grid Grid.Row="2" Margin="0,14,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="142*" />
+                    <ColumnDefinition Width="203*" />
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label x:Name="Lbl_Message_Notifications" FontSize="13" Grid.Column="0" Grid.Row="0" Margin="0,7,0,0" Content="{x:Static properties:LocalResources.label_Message_Notifications}" />
+                <CheckBox x:Name="Chk_Receive_notifications" Checked="Chk_Receive_notifications_OnChecked" FontSize="13"  Grid.Column="1" Grid.Row="0" Content="{x:Static properties:LocalResources.label_Chk_Receive_notifications}" />
+
+            </Grid>
+            <Grid Grid.Row="3">
+                <Button x:Name="closeButton" Click="closeButton_Click" Margin="-11,0,0,0" FontWeight="SemiBold" FontStretch="Condensed"
+                        FontFamily="{StaticResource RobotoBold}" Background="Transparent" HorizontalContentAlignment="Right" HorizontalAlignment="Right" 
+                        BorderBrush="Transparent" Content="{x:Static properties:LocalResources.label5_Close}" Foreground="{StaticResource WownderDefaultBrush}"  FontSize="13"/>
+            </Grid>
+
+        </Grid>
+    </Border>
+</Window>

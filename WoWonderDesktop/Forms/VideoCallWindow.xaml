@@ -1,0 +1,168 @@
+﻿<Window x:Class="WoWonderDesktop.Forms.VideoCallWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoWonderDesktop.Forms"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:properties="clr-namespace:WoWonderDesktop.language"
+        xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        mc:Ignorable="d"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Grayscale"
+        FontFamily="{StaticResource Roboto}"
+        Title="Video_Call_Window" WindowStyle="None" Height="680" Width="1042" AllowsTransparency="True" WindowStartupLocation="CenterScreen" >
+
+    <Window.Resources>
+        <Style TargetType="{x:Type local:VideoCallWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <!-- Outer border with the dropshadow margin -->
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=20}">
+                            <!-- Main window outline -->
+                            <Grid>
+                                <!-- Opacity mask for corners on grid -->
+                                <Border x:Name="Container"
+                                        Background="{StaticResource BackgroundLightBrush}"
+                                        CornerRadius="10" />
+                                <!-- Window border and dropshadown -->
+                                <Border CornerRadius="10"
+                                        Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <!-- The main window content -->
+                                <Grid>
+                                    <!-- Corner clipping -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+                                    <Grid.RowDefinitions>
+                                        <!-- Title Bar -->
+                                        <RowDefinition Height="2" />
+                                        <!-- Window Content -->
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <!-- Title Bar -->
+
+                                    <!-- Page Content -->
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="6" CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0" />
+    </WindowChrome.WindowChrome>
+
+    <Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="1260" />
+            </Grid.RowDefinitions>
+            <StackPanel Background="White" Grid.Row="0" ZIndex="1">
+                <Button Grid.Column="0" Panel.ZIndex="1" Margin="5 2 15 0" HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        VerticalAlignment="Top" Width="34" Height="34"
+                        RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label5_Close}"
+                        BorderBrush="Transparent"
+                        Background="Transparent" 
+                        Click="Close_OnClick">
+                    <materialDesign:PackIcon x:Name="IconClose" Kind="WindowClose" Foreground="#444444" Width="23" Height="23" />
+                </Button>
+            </StackPanel>
+
+            <Grid Grid.Row="1">
+
+                <wpf:ChromiumWebBrowser MouseEnter="VideoWEBRTC_OnMouseEnter" MouseLeave="VideoWEBRTC_OnMouseLeave"  x:Name="VideoWEBRTC" LoadingStateChanged="VideoWEBRTC_OnLoadingStateChanged" Address="https://webrtc.github.io/samples/src/content/devices/input-output/" Height="1300" Margin="-30,-95,-30,-30"  Width="1390"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                <Grid  ZIndex="2" x:Name="VideoControls"   MouseEnter="VideoWEBRTC_OnMouseEnter"  Background="Transparent" Height="90" Margin="0,-120,0,0" VerticalAlignment="Center" >
+                    <Border x:Name="BorderVideoControls" Visibility="Visible" Width="400" CornerRadius="15" Height="50" Background="{StaticResource WownderDarkBrush}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <Grid HorizontalAlignment="Stretch" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="40" />
+
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+
+                            <Button Grid.Column="0" Name="btnHide" Margin="5 2 8 0" HorizontalAlignment="Right" 
+                                    Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                    VerticalAlignment="Center" Width="34" Height="34"
+                                    RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Minimize}"
+                                    BorderBrush="#444444"
+                                    Background="#444444" 
+                                    Click="Hide_OnClick"  >
+                                <materialDesign:PackIcon Kind="ArrowBottomLeft" Foreground="#fff" Width="23" Height="23" />
+                            </Button>
+
+                            <Label Name="lbl_Status_time" Foreground="White" FontSize="16" Grid.Column="1" Content="00:00" VerticalAlignment="Center" HorizontalContentAlignment="Center" Margin="6,0,0,0" />
+
+                            <Button Grid.Column="2" Name="btnMessage" Margin="5 2 0 0" HorizontalAlignment="Left"
+                                    Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                    VerticalAlignment="Center" Width="34" Height="34"
+                                    RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Conversation}"
+                                    BorderBrush="#66B2FF"
+                                    Background="#66B2FF" 
+                                    Click="BtnMessage_OnClick" >
+                                <materialDesign:PackIcon  Kind="Message" Foreground="#fff" Width="20" Height="20" />
+                            </Button>
+
+                            <Button Grid.Column="2" x:Name="btnClose" Margin="5 2 8 0" HorizontalAlignment="Right" 
+                                    Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                    VerticalAlignment="Center" Width="34" Height="34"
+                                    RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_End_Video_Call}"
+                                    BorderBrush="#ff2f2f"
+                                    Background="#ff2f2f" 
+                                    Click="Close_OnClick"  >
+                                <materialDesign:PackIcon Kind="VideoOff" Foreground="#fff" Width="22" Height="23" />
+                            </Button>
+
+
+                            <Button Grid.Column="3" Name="btnFullScreenCompress" Margin="2 2 7 0" HorizontalAlignment="Right" Visibility="Collapsed"
+                                    Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                    VerticalAlignment="Center" Width="34" Height="34"
+                                    RenderTransformOrigin="1.366,0.72" 
+                                    BorderBrush="Transparent"
+                                    Background="Transparent" 
+                                    Click="BtnFullScreenCompress_OnClick"
+                                    ToolTip="{x:Static properties:LocalResources.label_Full_Screen_Compress}"
+                            >
+                                <materialDesign:PackIcon Kind="ArrowCompress" Foreground="#fff" Width="23" Height="23" />
+                            </Button>
+
+                            <Button Grid.Column="3" Name="btnFullScreenExpand" Click="BtnFullScreenExpand_OnClick" Margin="2 2 7 0" HorizontalAlignment="Right" 
+                                    Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                    VerticalAlignment="Center" Width="34" Height="34"
+                                    RenderTransformOrigin="1.366,0.72"
+                                    BorderBrush="Transparent"
+                                    Background="Transparent" 
+                                    ToolTip="{x:Static properties:LocalResources.label_Full_Screen_Expand}"
+                            >
+                                <materialDesign:PackIcon Kind="ArrowExpand" Foreground="#fff" Width="23" Height="23" />
+                            </Button>
+
+
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

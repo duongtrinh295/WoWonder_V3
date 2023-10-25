@@ -1,0 +1,253 @@
+﻿<Window x:Class="WoWonderDesktop.WindowsPages.MyProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoWonderDesktop.WindowsPages"
+        xmlns:properties="clr-namespace:WoWonderDesktop.language"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:WoWonderDesktop.Controls"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Grayscale"
+        FontFamily="{StaticResource Roboto}"    
+        Title="{x:Static properties:LocalResources.label5_MyProfile}" MaxHeight="730" Height="730" MaxWidth="600" Width="600" >
+
+    <Window.Resources>
+        <Style TargetType="{x:Type local:MyProfileWindow}">
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <!-- Outer border with the dropshadow margin -->
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=5}">
+                            <!-- Main window outline -->
+                            <Grid >
+                                <!-- Opacity mask for corners on grid -->
+                                <Border x:Name="Container"
+                                        Background="{StaticResource BackgroundLightBrush}"
+                                        CornerRadius="10" />
+                                <!-- Window border and dropshadown -->
+                                <Border CornerRadius="10"
+                                        Background="{StaticResource ForegroundLightBrush}">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <!-- The main window content -->
+                                <Grid>
+                                    <!-- Corner clipping -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+                                    <Grid.RowDefinitions>
+                                        <!-- Title Bar -->
+                                        <RowDefinition Height="30" />
+                                        <!-- Window Content -->
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <!-- Title Bar -->
+                                    <Grid Grid.Column="0" Panel.ZIndex="1">
+                                        <Grid.ColumnDefinitions>
+                                            <!-- Icon -->
+                                            <ColumnDefinition Width="Auto" />
+                                            <!-- Title -->
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <!-- Windows Button -->
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <!-- Icon -->
+                                        <Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}">
+                                            <Image Source="/Images/Icon.ico" />
+                                        </Button>
+                                        <!-- Title -->
+                                        <Viewbox Grid.Column="1" Margin="0">
+                                            <TextBlock x:Name="TitleApp" Loaded="TitleApp_OnLoaded" FontSize="8" Style="{StaticResource HeaderText}" Text="{x:Static properties:LocalResources.label5_MyProfile}" />
+                                        </Viewbox>
+                                        <!-- Window Buttons -->
+                                        <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                            <Button x:Name="Btn_Close" Style="{StaticResource WindowCloseButton}" Content="X" Click="Btn_Close_OnClick" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <!-- Page Content -->
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="6" CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0" />
+    </WindowChrome.WindowChrome>
+
+    <DockPanel x:Name="TabDockPanel" Margin="0,0,0,0" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="FirstGrid" Grid.Column="0" Background="{StaticResource BackgroundVeryLightBrush}" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Margin="5,20,0,0">
+
+                    <Grid>
+                        <controls:RoundProfileButton x:Name="ImageUser" Margin="0,10,0,0" Height="100" Width="100" ProfileImageSource="../Images/no_profile_image_circle.png" IsOnlineVisibility="Collapsed" StrokeBrush="#2a2e4d"/>
+
+                        <Button x:Name="EditImageButton" Visibility="Visible" Click="EditImageButton_OnClick"  materialDesign:ShadowAssist.ShadowDepth="Depth0" 
+                                Background="#CD201F" Height="28" Width="28" BorderBrush="#CD201F" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                HorizontalAlignment="Left" Margin="160,80,0,0">
+                            <materialDesign:PackIcon Kind="Edit" Foreground="White" Height="15" Width="15" Margin="3,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Button>  
+                    </Grid>
+
+                    <!--Contact Profile Info-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <TextBlock x:Name="TxtFullName" Margin="0,18,0,0" TextAlignment="Center" FontWeight="Bold" FontSize="20"/>
+                        <!-- icon verified-->
+                        <materialDesign:PackIcon x:Name="IconVerified" Kind="CheckboxMarkedCircle" Margin="5,22,0,5" Visibility="Visible" Foreground="#297CF9" VerticalAlignment="Center" HorizontalAlignment="Right"  FontSize="8"   />
+                        <!-- icon Pro-->
+                        <materialDesign:PackIcon x:Name="IconPro" Kind="Crown" Margin="5,22,0,5" Visibility="Visible" Foreground="#E65100" VerticalAlignment="Center" HorizontalAlignment="Right"  FontSize="8" />
+                    </StackPanel>
+
+
+                    <TextBlock Text="{x:Static properties:LocalResources.label5_PersonalInformation}" FontWeight="Bold" VerticalAlignment="Center" Margin="5,20,0,5" FontFamily="{StaticResource RobotoBold}"  Foreground="#444" HorizontalAlignment="Left"  FontSize="12" />
+                    <Grid  Margin="6,5,0,0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="90" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+
+                        <materialDesign:PackIcon  Grid.Column="0" Grid.Row="0" Margin="10,17,0,0" Kind="FaceMan" Foreground="{StaticResource WownderDefaultBrush }" Width="22" Height="22" />
+                        <TextBox x:Name="TxtUserName" Grid.Column="1" Grid.Row="0" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="UserName" />
+
+                        <materialDesign:PackIcon Grid.Column="0" Grid.Row="1" Margin="10,17,0,0" Kind="Account" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                        <TextBox x:Name="TxtFirstName"  Grid.Column="1" Grid.Row="1" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="First Name"  />
+
+                        <materialDesign:PackIcon Grid.Column="0" Grid.Row="2" Margin="10,17,0,0" Kind="Account" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                        <TextBox x:Name="TxtLastName" Grid.Column="1" Grid.Row="2" FontSize="14"  BorderBrush="#efefef"  Width="220"  HorizontalAlignment="Left"  Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Last Name" />
+
+                        <materialDesign:PackIcon Grid.Column="0" Grid.Row="3" Margin="10,17,0,0" Kind="Email" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                        <TextBox x:Name="TxtEmail" Grid.Column="1" Grid.Row="3" FontSize="14" BorderBrush="#efefef"  Width="220"  HorizontalAlignment="Left"  Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Email" />
+
+                        <materialDesign:PackIcon Grid.Column="0" Grid.Row="4" Margin="10,17,0,0" Kind="Calendar" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                        <DatePicker x:Name="TxtBirthday" Grid.Column="1" Grid.Row="4" BorderBrush="#efefef" SelectedDate="{x:Static sys:DateTime.Now}" FontSize="11" Width="220" Height="25" HorizontalAlignment="Left" Margin="4 10 0 8" materialDesign:HintAssist.Hint="{x:Static properties:LocalResources.label_Txt_Birthday}"  >
+                            <DatePicker.Resources>
+                                <Style TargetType="{x:Type DatePickerTextBox}">
+                                    <Setter Property="Control.Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}, StringFormat={}{0:yyyy-MM-dd}}" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+
+                        <materialDesign:PackIcon Grid.Column="0" Grid.Row="5" Margin="10,17,0,0"  Kind="GenderMaleFemale" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                        <ComboBox FontSize="14" Grid.Column="1" Grid.Row="5" Margin="4,0,0,10" BorderBrush="#efefef" Width="220" HorizontalAlignment="Left"  Name="SelGender" materialDesign:HintAssist.Hint="{x:Static properties:LocalResources.label_Sel_Gender}" Foreground="Black"  FontWeight="Normal" IsEditable="True" SelectionChanged="SelGender_OnSelectionChanged"  Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+                        <materialDesign:PackIcon  Grid.Column="0" Grid.Row="6" Margin="10,8,0,0" Kind="AlertCircle" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                        <TextBox x:Name="TxtAbout" Grid.Column="1" Grid.Row="6" Margin="4,0,0,10" BorderBrush="#efefef" HorizontalAlignment="Left"  Style="{StaticResource MaterialDesignTextBox}" VerticalAlignment="Top" Width="220" Height="80"  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="About" />
+
+                        <materialDesign:PackIcon  Grid.Column="0" Grid.Row="7" Margin="10,17,0,0" Kind="Cellphone" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                        <TextBox x:Name="TxtPhone" Grid.Column="1" Grid.Row="7"  BorderBrush="#efefef"  FontSize="14" Width="220"  HorizontalAlignment="Left"  Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Phone" />
+
+                    </Grid>
+
+                </StackPanel>
+
+            </Grid>
+
+            <Grid x:Name="SecGrid" Grid.Column="1" Background="{StaticResource BackgroundVeryLightBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1" Margin="6,5,0,0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="90" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+
+                    <materialDesign:PackIcon  Grid.Column="0" Grid.Row="0" Margin="10,17,0,0" Kind="Cellphone" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                    <TextBox x:Name="TxtWork" Grid.Column="1" Grid.Row="0" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Work" />
+
+                    <materialDesign:PackIcon  Grid.Column="0" Grid.Row="1" Margin="10,17,0,0" Kind="School" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                    <TextBox x:Name="TxtSchool" Grid.Column="1" Grid.Row="1" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="School" />
+
+                    <materialDesign:PackIcon  Grid.Column="0" Grid.Row="2" Margin="10,17,0,0" Kind="Web" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                    <TextBox x:Name="TxtWebsite" Grid.Column="1" Grid.Row="2" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Website" />
+
+                    <materialDesign:PackIcon Grid.Column="0" Grid.Row="3" Margin="10,8,0,0"  Kind="GoogleMaps" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                    <TextBox x:Name="TxtLocation" Grid.Column="1" Grid.Row="3" Margin="4,0,0,10" BorderBrush="#efefef" Style="{StaticResource MaterialDesignTextBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="220" Height="80"  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="Location" />
+
+                    <materialDesign:PackIcon  Grid.Column="0" Grid.Row="4" Margin="10,17,0,0" Kind="Ring" Foreground="{StaticResource WownderDefaultBrush}" Width="22" Height="22" />
+                    <ComboBox FontSize="14" Grid.Column="1" Grid.Row="4" Margin="4,0,0,10" BorderBrush="#efefef" Width="220"  Name="SelRelationship" materialDesign:HintAssist.Hint="Relationship" HorizontalAlignment="Left"  Foreground="Black"  FontWeight="Normal" IsEditable="True" SelectionChanged="SelRelationship_OnSelectionChanged"  Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
+
+                    <TextBlock Text="{x:Static properties:LocalResources.label5_YourSocialMediaProfiles}" Grid.ColumnSpan="2"  Grid.Row="5" FontWeight="Bold" VerticalAlignment="Center" Margin="5,0,0,0" FontFamily="{StaticResource RobotoBold}"  Foreground="#444" HorizontalAlignment="Left"  FontSize="12" />
+
+                    <materialDesign:PackIcon  Grid.Column="0" Grid.Row="6" Margin="10,17,0,0" Kind="Facebook" Foreground="#3b5998" Width="22" Height="22" />
+                    <TextBox x:Name="TxtFacebook" Grid.Column="1" Grid.Row="6" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Facebook" />
+
+                    <materialDesign:PackIcon  Grid.Column="0" Grid.Row="7" Margin="10,17,0,0" Kind="Twitter" Foreground="#1DA1F2" Width="22" Height="22" />
+                    <TextBox x:Name="TxtTwitter" Grid.Column="1" Grid.Row="7" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Twitter" />
+
+                    <materialDesign:PackIcon  Grid.Column="0" Grid.Row="8" Margin="10,17,0,0" Kind="Linkedin" Foreground="#007bb6" Width="22" Height="22" />
+                    <TextBox x:Name="TxtLinkedin" Grid.Column="1" Grid.Row="8" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Linkedin" />
+
+                    <materialDesign:PackIcon  Grid.Column="0" Grid.Row="9" Margin="10,17,0,0" Kind="Instagram" Foreground="#bc2a8d" Width="22" Height="22" />
+                    <TextBox x:Name="TxtInstagram" Grid.Column="1" Grid.Row="9" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Instagram" />
+
+                    <materialDesign:PackIcon  Grid.Column="0" Grid.Row="10" Margin="10,17,0,0" Kind="YoutubePlay" Foreground="#DB4437" Width="22" Height="22" />
+                    <TextBox x:Name="TxtYouTube" Grid.Column="1" Grid.Row="10" FontSize="14" BorderBrush="#efefef" Width="220"  HorizontalAlignment="Left" Margin="4,0,0,10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="YouTube" />
+
+                    <Button x:Name="BtnSaveEditProfile" Grid.ColumnSpan="2" Grid.Row="11" HorizontalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth0" Margin="10" Content="{x:Static properties:LocalResources.label5_Save}"  FontSize="11" Foreground="White" HorizontalContentAlignment="Center" Width="200" Click="Btn_save_EditProfile_OnClick"/>
+
+                </Grid>
+ 
+            </Grid>
+
+        </Grid>
+    </DockPanel>
+</Window>

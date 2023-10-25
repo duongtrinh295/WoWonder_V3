@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Red.Primary.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#fff" po:Freeze="True" />
+    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#fff" po:Freeze="True" />
+    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="{StaticResource DefaulColor}" po:Freeze="True" />
+    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#fff" po:Freeze="True" />
+    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="{StaticResource DefaulColor}" po:Freeze="True" />
+    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#fff" po:Freeze="True" />
+
+</ResourceDictionary>

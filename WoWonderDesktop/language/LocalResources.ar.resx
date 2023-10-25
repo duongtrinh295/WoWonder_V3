@@ -1,0 +1,1230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="label2_Night_Mode" xml:space="preserve">
+    <value>الوضع الليلي</value>
+  </data>
+	<data name="label2_No_file_selected" xml:space="preserve">
+    <value>لم يتم اختيار ملف</value>
+  </data>
+	<data name="label3_about_hour" xml:space="preserve">
+    <value>منذ ساعة</value>
+  </data>
+	<data name="label3_about_minute" xml:space="preserve">
+    <value>قبل دقيقة</value>
+  </data>
+	<data name="label3_about_month" xml:space="preserve">
+    <value>منذ شهر</value>
+  </data>
+	<data name="label3_about_year" xml:space="preserve">
+    <value>منذ عام</value>
+  </data>
+	<data name="label3_ActiveAccount" xml:space="preserve">
+    <value>حساب نشط</value>
+  </data>
+	<data name="label3_AddCode" xml:space="preserve">
+    <value>أضف رقم الكود</value>
+  </data>
+	<data name="label3_ChangePassword" xml:space="preserve">
+    <value>تغيير كلمة المرور</value>
+  </data>
+	<data name="label3_CodeNotCorrect" xml:space="preserve">
+    <value>الرجاء كتابة رقم الكود الصحيح</value>
+  </data>
+	<data name="label3_CurrentPassword" xml:space="preserve">
+    <value>كلمة المرور الحالية</value>
+  </data>
+	<data name="label3_days" xml:space="preserve">
+    <value>D</value>
+  </data>
+	<data name="label3_hours" xml:space="preserve">
+    <value>س</value>
+  </data>
+	<data name="label3_minutes" xml:space="preserve">
+    <value>الحد الأدنى</value>
+  </data>
+	<data name="label3_month" xml:space="preserve">
+    <value>مش</value>
+  </data>
+	<data name="label3_NewPassword" xml:space="preserve">
+    <value>كلمة مرور جديدة</value>
+  </data>
+	<data name="label3_Please_check_your_details" xml:space="preserve">
+    <value>يرجى التحقق من التفاصيل الخاصة بك</value>
+  </data>
+	<data name="label3_Please_write_your_Phone" xml:space="preserve">
+    <value>الرجاء كتابة رقم هاتفك</value>
+  </data>
+	<data name="label3_seconds" xml:space="preserve">
+    <value>ثانية</value>
+  </data>
+	<data name="label3_Verification" xml:space="preserve">
+    <value>التحقق</value>
+  </data>
+	<data name="label3_VerificationText1" xml:space="preserve">
+    <value>لتسجيل الدخول ، تحتاج إلى التحقق من هويتك.</value>
+  </data>
+	<data name="label3_VerificationText2" xml:space="preserve">
+    <value>لقد أرسلنا لك رمز التأكيد إلى عنوان بريدك الإلكتروني.</value>
+  </data>
+	<data name="label3_Verify" xml:space="preserve">
+    <value>تحقق</value>
+  </data>
+	<data name="label3_year" xml:space="preserve">
+    <value>Y</value>
+  </data>
+	<data name="label3_y أمس" xml:space="preserve">
+    <value>أمس</value>
+  </data>
+	<data name="label3_Your_password_dont_match" xml:space="preserve">
+    <value>كلمة المرور الخاصة بك غير متطابقة</value>
+  </data>
+	<data name="label5_AddFriends" xml:space="preserve">
+    <value>إضافة أصدقاء</value>
+  </data>
+	<data name="label5_AllMedia" xml:space="preserve">
+    <value>كل الوسائط</value>
+  </data>
+	<data name="label5_Angry" xml:space="preserve">
+    <value>غاضب</value>
+  </data>
+	<data name="label5_Archive" xml:space="preserve">
+    <value>أرشيف</value>
+  </data>
+	<data name="label5_Archived" xml:space="preserve">
+    <value>مؤرشف</value>
+  </data>
+	<data name="label5_AreYouLogout" xml:space="preserve">
+    <value>هل أنت متأكد من أنك ذهبت لتسجيل الخروج؟</value>
+  </data>
+	<data name="label5_AreYouSureBlockUser" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حظر هذا المستخدم؟</value>
+  </data>
+	<data name="label5_AreYouSureDeleteGroup" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف المجموعة</value>
+  </data>
+	<data name="label5_AreYouSureDeleteMessages" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف الرسائل؟</value>
+  </data>
+	<data name="label5_AreYouSureDeleteThisUser" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف هذا المستخدم؟</value>
+  </data>
+	<data name="label5_AreYouSureExitGroup" xml:space="preserve">
+    <value>هل أنت متأكد من خروجك من المجموعة</value>
+  </data>
+	<data name="label5_AreYouSureLogoutFromThisDevice" xml:space="preserve">
+    <value>هل تريد بالتأكيد تسجيل الخروج من هذا الجهاز؟</value>
+  </data>
+	<data name="label5_Are_you_DeleteAccount" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف الحساب من</value>
+  </data>
+	<data name="label5_Audio" xml:space="preserve">
+    <value>صوت</value>
+  </data>
+	<data name="label5_ImageBackground" xml:space="preserve">
+    <value>خلفية الدردشة</value>
+  </data>
+	<data name="label5_Block" xml:space="preserve">
+    <value>حظر</value>
+  </data>
+	<data name="label5_blockUser_Sub" xml:space="preserve">
+    <value>مراجعة الأشخاص الذين حظرتهم مسبقًا</value>
+  </data>
+	<data name="label5_Call" xml:space="preserve">
+    <value>اتصال</value>
+  </data>
+	<data name="label5_Camera" xml:space="preserve">
+    <value>الكاميرا</value>
+  </data>
+	<data name="label5_ChangePassword_Sub" xml:space="preserve">
+    <value>إنها فكرة جيدة أن تستخدم كلمة مرور قوية لا تستخدمها في أي مكان آخر</value>
+  </data>
+	<data name="label5_ChangeWallpaper" xml:space="preserve">
+    <value>تغيير الخلفية</value>
+  </data>
+	<data name="label5_ChooseFromGallery" xml:space="preserve">
+    <value>اختر من المعرض</value>
+  </data>
+	<data name="label5_ClearChat" xml:space="preserve">
+    <value>محو الدردشة</value>
+  </data>
+	<data name="label5_Confirm" xml:space="preserve">
+    <value>تأكيد</value>
+  </data>
+	<data name="label5_ConfirmationUnFriend" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد إزالة هذا المستخدم كصديق لك؟</value>
+  </data>
+	<data name="label5_ConfirmRequest" xml:space="preserve">
+    <value>تأكيد الطلب عندما يتابعك شخص ما</value>
+  </data>
+	<data name="label5_Contact" xml:space="preserve">
+    <value>جهة اتصال</value>
+  </data>
+	<data name="label5_Conversations" xml:space="preserve">
+    <value>المحادثات</value>
+  </data>
+	<data name="label5_Create" xml:space="preserve">
+    <value>إنشاء</value>
+  </data>
+	<data name="label5_CreateGroupChat" xml:space="preserve">
+    <value>إنشاء دردشة جماعية</value>
+  </data>
+	<data name="label5_DefaultWallPaper" xml:space="preserve">
+    <value>ورق الحائط الافتراضي</value>
+  </data>
+	<data name="label5_DeleteAccount_Sub" xml:space="preserve">
+    <value>سيؤدي حذف حسابك إلى إزالة صورك وملفك الشخصي وكل تقدمك بشكل دائم.</value>
+  </data>
+	<data name="label5_DeleteMessage" xml:space="preserve">
+    <value>حذف الرسالة</value>
+  </data>
+	<data name="label5_Delete_Account" xml:space="preserve">
+    <value>حذف الحساب</value>
+  </data>
+	<data name="label5_Delivered" xml:space="preserve">
+    <value>سلمت</value>
+  </data>
+	<data name="label5_Docs" xml:space="preserve">
+    <value>المستندات</value>
+  </data>
+	<data name="label5_EditProfileAndAvatar" xml:space="preserve">
+		<value>تحرير الملف الشخصي والصورة الرمزية</value>
+	</data>
+	<data name="label5_EditGroupChat" xml:space="preserve">
+    <value>تحرير الدردشة الجماعية</value>
+  </data>
+	<data name="label5_EditYourProfileInfo" xml:space="preserve">
+    <value>تحرير معلومات ملفك الشخصي</value>
+  </data>
+	<data name="label5_Error" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+	<data name="label5_ErrorLengthGroupName" xml:space="preserve">
+    <value>يجب أن يتراوح اسم المجموعة بين 4 و 15 حرفًا</value>
+  </data>
+	<data name="label5_ErrorSelectedFileExtenstion" xml:space="preserve">
+    <value>امتداد الملف المحدد ممنوع</value>
+  </data>
+	<data name="label5_Error_connectServer" xml:space="preserve">
+    <value>لا يمكن الاتصال بالخادم</value>
+  </data>
+	<data name="label5_Event" xml:space="preserve">
+    <value>حدث</value>
+  </data>
+	<data name="label5_Everyone" xml:space="preserve">
+    <value>الجميع</value>
+  </data>
+	<data name="label5_Explore" xml:space="preserve">
+    <value>استكشاف</value>
+  </data>
+	<data name="label5_Favorite" xml:space="preserve">
+    <value>المفضلة</value>
+  </data>
+	<data name="label5_Follow" xml:space="preserve">
+    <value>متابعة</value>
+  </data>
+	<data name="label5_Following" xml:space="preserve">
+    <value>متابعة</value>
+  </data>
+	<data name="label5_Forward" xml:space="preserve">
+    <value>إعادة توجيه</value>
+  </data>
+	<data name="label5_Forwarded" xml:space="preserve">
+    <value>مُعاد توجيهه</value>
+  </data>
+	<data name="label5_ForwardMessage" xml:space="preserve">
+    <value>إعادة توجيه الرسالة</value>
+  </data>
+	<data name="label5_FriendRequests" xml:space="preserve">
+    <value>طلبات الصداقة</value>
+  </data>
+	<data name="label5_Friends" xml:space="preserve">
+    <value>أصدقاء</value>
+  </data>
+	<data name="label5_Gallery" xml:space="preserve">
+    <value>معرض</value>
+  </data>
+	<data name="label5_Gps_is_disabled" xml:space="preserve">
+    <value>تم تعطيل GPS. هل تريد تمكين GPS</value>
+  </data>
+	<data name="label5_GroupChatProfile" xml:space="preserve">
+    <value>ملف تعريف مجموعة الدردشة</value>
+  </data>
+	<data name="label5_GroupRequests" xml:space="preserve">
+    <value>طلبات المجموعة</value>
+  </data>
+	<data name="label5_Groups" xml:space="preserve">
+    <value>المجموعات</value>
+  </data>
+	<data name="label5_GroupSuccessfullyDeleted" xml:space="preserve">
+    <value>تم حذف المجموعة بنجاح</value>
+  </data>
+	<data name="label5_GroupSuccessfullyLeaved" xml:space="preserve">
+    <value>لقد تركت هذه المجموعة بنجاح</value>
+  </data>
+	<data name="label5_HaHa" xml:space="preserve">
+    <value>هههه</value>
+  </data>
+	<data name="label5_InfoGroup" xml:space="preserve">
+    <value>مجموعة المعلومات</value>
+  </data>
+	<data name="label5_IWantToDelete1" xml:space="preserve">
+    <value>نعم ، أريد حذف</value>
+  </data>
+	<data name="label5_IWantToDelete2" xml:space="preserve">
+    <value>بشكل دائم من</value>
+  </data>
+	<data name="label5_IWantToDelete3" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+	<data name="label5_Language_Sub" xml:space="preserve">
+    <value>اعرض لغة التطبيق</value>
+  </data>
+	<data name="label5_Like" xml:space="preserve">
+    <value>مثل</value>
+  </data>
+	<data name="label5_Loading_messages" xml:space="preserve">
+    <value>تحميل الرسائل</value>
+  </data>
+	<data name="label5_Love" xml:space="preserve">
+    <value>الحب</value>
+  </data>
+	<data name="label5_Male" xml:space="preserve">
+    <value>ذكر</value>
+  </data>
+	<data name="label5_ManageSessions" xml:space="preserve">
+    <value>إدارة الجلسات</value>
+  </data>
+	<data name="label5_ManageSessions_Sub" xml:space="preserve">
+    <value>راجع قائمة الأجهزة التي لن تضطر فيها إلى استخدام رمز تسجيل الدخول</value>
+  </data>
+	<data name="label5_MessageInfo" xml:space="preserve">
+    <value>معلومات الرسالة</value>
+  </data>
+	<data name="label5_MessagePinned" xml:space="preserve">
+    <value>الرسالة مثبتة</value>
+  </data>
+	<data name="label5_MessagesSent" xml:space="preserve">
+    <value>الرسائل المرسلة</value>
+  </data>
+	<data name="label5_MessageUnPinned" xml:space="preserve">
+    <value>الرسالة غير مثبتة</value>
+  </data>
+	<data name="label5_Messenger" xml:space="preserve">
+    <value>ماسنجر</value>
+  </data>
+	<data name="label5_MsgPopup" xml:space="preserve">
+    <value>رسالة منبثقة</value>
+  </data>
+	<data name="label5_MuteNotification" xml:space="preserve">
+    <value>تجاهل الإعلام</value>
+  </data>
+	<data name="label5_MyAffiliates" xml:space="preserve">
+    <value>الشركات التابعة لي</value>
+  </data>
+	<data name="label5_MyAffiliates_Link" xml:space="preserve">
+    <value>الارتباط التابع الخاص بك هو</value>
+  </data>
+	<data name="label5_MyProfile" xml:space="preserve">
+    <value>ملفي الشخصي</value>
+  </data>
+	<data name="label5_NearBy" xml:space="preserve">
+    <value>بالقرب من</value>
+  </data>
+	<data name="label5_NewBroadcast" xml:space="preserve">
+    <value>بث جديد</value>
+  </data>
+	<data name="label5_NoArchive_TitleText" xml:space="preserve">
+    <value>لا توجد محادثات مؤرشفة</value>
+  </data>
+	<data name="label5_NoBlockedUsers_DescriptionText" xml:space="preserve">
+    <value>لم تحظر أي مستخدمين</value>
+  </data>
+	<data name="label5_NoBlockedUsers_TitleText" xml:space="preserve">
+    <value>لا يوجد مستخدمون لعرضهم</value>
+  </data>
+	<data name="label5_NoBody" xml:space="preserve">
+    <value>لا نص</value>
+  </data>
+	<data name="label5_NoCall_DescriptionText" xml:space="preserve">
+    <value>ابدأ مكالمة جديدة من قائمة أصدقائك</value>
+  </data>
+	<data name="label5_NoCall_TitleText" xml:space="preserve">
+    <value>لا مكالمات</value>
+  </data>
+	<data name="label5_NoConnection_DescriptionText" xml:space="preserve">
+    <value>لم نتمكن من إنشاء اتصال بخوادمنا ، يرجى المحاولة مرة أخرى لاحقًا</value>
+  </data>
+	<data name="label5_NoConnection_TitleText" xml:space="preserve">
+    <value>لا يوجد إنترنت متاح</value>
+  </data>
+	<data name="label5_NoEvent_DescriptionText" xml:space="preserve">
+    <value>لا توجد أحداث لعرضها</value>
+  </data>
+	<data name="label5_NoEvent_TitleText" xml:space="preserve">
+    <value>لا توجد أحداث</value>
+  </data>
+	<data name="label5_NoFollow_DescriptionText" xml:space="preserve">
+    <value>ليس لديك أصدقاء لمتابعتهم</value>
+  </data>
+	<data name="label5_NoFollow_TitleText" xml:space="preserve">
+    <value>لا يوجد مستخدمون حتى الآن</value>
+  </data>
+	<data name="label5_NoFriendRequests_TitleText" xml:space="preserve">
+    <value>ليس لديك أي طلبات</value>
+  </data>
+	<data name="label5_NoGroupChat_DescriptionText" xml:space="preserve">
+    <value>البدء في إضافة مجموعات جديدة</value>
+  </data>
+	<data name="label5_NoGroupChat_TitleText" xml:space="preserve">
+    <value>لا توجد مجموعات</value>
+  </data>
+	<data name="label5_NoGroupRequest_TitleText" xml:space="preserve">
+    <value>لا توجد دعوات للانضمام إلى مجموعة الدردشة</value>
+  </data>
+	<data name="label5_NoImages" xml:space="preserve">
+    <value>لا توجد صور</value>
+  </data>
+	<data name="label5_NoMedia" xml:space="preserve">
+    <value>لا توجد وسائط</value>
+  </data>
+	<data name="label5_NoMessages_DescriptionText" xml:space="preserve">
+    <value>ابدأ محادثات جديدة بالذهاب إلى >> جهات الاتصال</value>
+  </data>
+	<data name="label5_NoMessages_TitleText" xml:space="preserve">
+    <value>لا مزيد من الرسائل</value>
+  </data>
+	<data name="label5_NoNearBy_TitleText" xml:space="preserve">
+    <value>عفوًا ، يبدو أنه لا يوجد أحد بالقرب منك</value>
+  </data>
+	<data name="label5_NoPageChat_TitleText" xml:space="preserve">
+    <value>لا توجد صفحات</value>
+  </data>
+	<data name="label5_NoPinnedMessages_TitleText" xml:space="preserve">
+    <value>لا توجد رسالة مثبتة</value>
+  </data>
+	<data name="label5_NoSearchResult_DescriptionText" xml:space="preserve">
+    <value>لم نتمكن من العثور على الكلمة الرئيسية التي تبحث عنها ربما خطأ إملائي بسيط</value>
+  </data>
+	<data name="label5_NoSearchResult_TitleText" xml:space="preserve">
+    <value>حزين لا نتيجة</value>
+  </data>
+	<data name="label5_NoSessions_TitleText" xml:space="preserve">
+    <value>لا توجد جلسات</value>
+  </data>
+	<data name="label5_NoStartedMessages_TitleText" xml:space="preserve">
+    <value>لا توجد رسائل مفضلة</value>
+  </data>
+	<data name="label5_NotificationPopup" xml:space="preserve">
+    <value>إعلام منبثق</value>
+  </data>
+	<data name="label5_NotificationPopup_Sub" xml:space="preserve">
+    <value>احصل على إشعارات عندما تتلقى الرسائل</value>
+  </data>
+	<data name="label5_NotificationsControl" xml:space="preserve">
+    <value>التحكم في الإخطارات</value>
+  </data>
+	<data name="label5_NoUsers_DescriptionText" xml:space="preserve">
+    <value>مرحبًا ، أنت أول مستخدم هنا</value>
+  </data>
+	<data name="label5_NoUsers_TitleText" xml:space="preserve">
+    <value>لا يوجد مستخدمون لعرضهم</value>
+  </data>
+	<data name="label5_Participant" xml:space="preserve">
+    <value>مشارك</value>
+  </data>
+	<data name="label5_PeopleIFollow" xml:space="preserve">
+    <value>الناس أتابع</value>
+  </data>
+	<data name="label5_PersonalInformation" xml:space="preserve">
+    <value>معلومات شخصية</value>
+  </data>
+	<data name="label5_PhoneNumberIsWrong" xml:space="preserve">
+    <value>خطأ ، رقم الهاتف خاطئ</value>
+  </data>
+	<data name="label5_Pin" xml:space="preserve">
+    <value>دبوس</value>
+  </data>
+	<data name="label5_PinnedMessages" xml:space="preserve">
+    <value>الرسائل المثبتة</value>
+  </data>
+	<data name="label5_PlaySound_Sub" xml:space="preserve">
+    <value>تشغيل الأصوات للرسائل الواردة والصادرة</value>
+  </data>
+	<data name="label5_PleaseEnterName" xml:space="preserve">
+    <value>خطأ ، الرجاء إدخال الاسم</value>
+  </data>
+	<data name="label5_PleaseEnterWebsite" xml:space="preserve">
+    <value>خطأ ، الرجاء إدخال موقع الويب</value>
+  </data>
+	<data name="label5_PleaseEnterYourData" xml:space="preserve">
+    <value>الرجاء إدخال بياناتك</value>
+  </data>
+	<data name="label5_PleaseSelectImage" xml:space="preserve">
+    <value>خطأ ، يرجى تحديد صورة</value>
+  </data>
+	<data name="label5_Please_confirm_your_password" xml:space="preserve">
+    <value>خطأ ، يرجى تأكيد كلمة المرور الخاصة بك</value>
+  </data>
+	<data name="label5_Privacy" xml:space="preserve">
+    <value>الخصوصية</value>
+  </data>
+	<data name="label5_PrivacyPolicy" xml:space="preserve">
+    <value>سياسة الخصوصية</value>
+  </data>
+	<data name="label5_Product" xml:space="preserve">
+    <value>المنتج</value>
+  </data>
+	<data name="label5_Read" xml:space="preserve">
+    <value>قراءة</value>
+  </data>
+	<data name="label5_RecieveCall" xml:space="preserve">
+    <value>تلقي مكالمة</value>
+  </data>
+	<data name="label5_Recording" xml:space="preserve">
+    <value>تسجيل</value>
+  </data>
+	<data name="label5_Relationship" xml:space="preserve">
+    <value>العلاقة</value>
+  </data>
+	<data name="label5_Reply" xml:space="preserve">
+    <value>رد</value>
+  </data>
+	<data name="label5_Request" xml:space="preserve">
+    <value>طلب</value>
+  </data>
+	<data name="label5_Sad" xml:space="preserve">
+    <value>حزين</value>
+  </data>
+	<data name="label5_Security" xml:space="preserve">
+    <value>الأمن</value>
+  </data>
+	<data name="label5_SeeAll" xml:space="preserve">
+    <value>رؤية الكل</value>
+  </data>
+	<data name="label5_SelectMembers" xml:space="preserve">
+    <value>حدد الأعضاء</value>
+  </data>
+	<data name="label5_SendVideoCall" xml:space="preserve">
+    <value>إرسال مكالمة فيديو</value>
+  </data>
+	<data name="label5_Send_you_an_contact" xml:space="preserve">
+    <value>أرسل لك جهة اتصال</value>
+  </data>
+	<data name="label5_Send_you_an_location" xml:space="preserve">
+    <value>أرسل لك موقعا</value>
+  </data>
+	<data name="label5_SettingStickers" xml:space="preserve">
+    <value>ضبط الملصقات</value>
+  </data>
+	<data name="label5_SharedFiles" xml:space="preserve">
+    <value>الملفات المشتركة</value>
+  </data>
+	<data name="label5_SocialLogin" xml:space="preserve">
+    <value>تسجيل الدخول الاجتماعي</value>
+  </data>
+	<data name="label5_StartChatting" xml:space="preserve">
+    <value>ابدأ الدردشة</value>
+  </data>
+	<data name="label5_StartedMessages" xml:space="preserve">
+    <value>بدء الرسائل</value>
+  </data>
+	<data name="label5_Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+	<data name="label5_Sticker" xml:space="preserve">
+    <value>ملصق</value>
+  </data>
+	<data name="label5_StickersAndEmojis" xml:space="preserve">
+    <value>ملصقات ورموز تعبيرية</value>
+  </data>
+	<data name="label5_StorageSettings" xml:space="preserve">
+    <value>إعدادات التخزين</value>
+  </data>
+	<data name="label5_Story" xml:space="preserve">
+    <value>قصة</value>
+  </data>
+	<data name="label5_Study" xml:space="preserve">
+    <value>دراسة</value>
+  </data>
+	<data name="label5_Themes" xml:space="preserve">
+    <value>السمات</value>
+  </data>
+	<data name="label5_TheWebsiteFormatNotCorrect" xml:space="preserve">
+    <value>تنسيق موقع الويب غير صحيح</value>
+  </data>
+	<data name="label5_ThisFileDownload" xml:space="preserve">
+    <value>يتم تنزيل هذا الملف في الوقت الرئيسي</value>
+  </data>
+	<data name="label5_ThisUserNotActive" xml:space="preserve">
+    <value>لم يتم تنشيط هذا المستخدم ، يرجى التحقق من بريدك الإلكتروني</value>
+  </data>
+	<data name="label5_TwoFactorsAuthentication" xml:space="preserve">
+    <value>المصادقة ذات العاملين</value>
+  </data>
+	<data name="label5_TwoFactorsAuthentication_Sub" xml:space="preserve">
+    <value>سنطلب رمز تسجيل الدخول إذا قدمنا ​​محاولة تسجيل دخول من جهاز أو متصفح غير معروف</value>
+  </data>
+	<data name="label5_TwoFactor_Description" xml:space="preserve">
+    <value>قم بتشغيل تسجيل الدخول بخطوتين لرفع مستوى أمان حسابك ، بمجرد تشغيله ، ستستخدم كلمة مرورك ورمز أمان مكون من 6 أرقام يتم إرساله إلى هاتفك أو بريدك الإلكتروني لتسجيل الدخول .</value>
+  </data>
+	<data name="label5_UnArchive" xml:space="preserve">
+    <value>إلغاء الأرشفة</value>
+  </data>
+	<data name="label5_UnBlock" xml:space="preserve">
+    <value>فك الحظر</value>
+  </data>
+	<data name="label5_UnFavorite" xml:space="preserve">
+    <value>غير مفضل</value>
+  </data>
+	<data name="label5_UnMuteNotification" xml:space="preserve">
+    <value>إلغاء كتم صوت الإشعار</value>
+  </data>
+	<data name="label5_UnPin" xml:space="preserve">
+    <value>إلغاء التثبيت</value>
+  </data>
+	<data name="label5_UpdateProfile_Sub" xml:space="preserve">
+    <value>حدّث اسمك ومعلومات الاتصال المرتبطة بحسابك</value>
+  </data>
+	<data name="label5_UserNotFound" xml:space="preserve">
+    <value>المستخدم غير موجود</value>
+  </data>
+	<data name="label5_UserProfileInformation" xml:space="preserve">
+    <value>معلومات ملف تعريف المستخدم</value>
+  </data>
+	<data name="label5_UsersBlocked" xml:space="preserve">
+    <value>المستخدمون المحظورون</value>
+  </data>
+	<data name="label5_Use_Location" xml:space="preserve">
+    <value>هل تستخدم الموقع؟</value>
+  </data>
+	<data name="label5_VideoPlayer" xml:space="preserve">
+    <value>مشغل الفيديو</value>
+  </data>
+	<data name="label5_Wallpaper" xml:space="preserve">
+    <value>خلفيات</value>
+  </data>
+	<data name="label5_Welcome" xml:space="preserve">
+    <value>مرحبًا</value>
+  </data>
+	<data name="label5_Welcome_Sub" xml:space="preserve">
+    <value>تغيير لون خلفية المحادثة</value>
+  </data>
+	<data name="label5_WhoCanFollowMe" xml:space="preserve">
+    <value>من يمكنه متابعتي؟</value>
+  </data>
+	<data name="label5_WhoCanSeeMyBirthday" xml:space="preserve">
+    <value>من يمكنه رؤية عيد ميلادي؟</value>
+  </data>
+	<data name="label5_Work" xml:space="preserve">
+    <value>العمل</value>
+  </data>
+	<data name="label5_Wow" xml:space="preserve">
+    <value>رائع</value>
+  </data>
+	<data name="label5_YourSocialMediaProfiles" xml:space="preserve">
+    <value>ملفات تعريف الوسائط الاجتماعية الخاصة بك</value>
+  </data>
+	<data name="label5_Your_account_was_successfully_deleted" xml:space="preserve">
+    <value>تم حذف حسابك بنجاح</value>
+  </data>
+	<data name="label5_You_can_not_access_your_disapproval" xml:space="preserve">
+    <value>لا يمكنك الوصول إلى رفضك للبنود والشروط</value>
+  </data>
+	<data name="label_About" xml:space="preserve">
+    <value>حول</value>
+  </data>
+	<data name="label_Accept" xml:space="preserve">
+    <value>قبول</value>
+  </data>
+	<data name="label_Background" xml:space="preserve">
+    <value>الخلفية</value>
+  </data>
+	<data name="label_blocked" xml:space="preserve">
+    <value>لن تتمكن جهات الاتصال المحظورة بعد الآن من الاتصال بك أو إرسال رسائل إليك.</value>
+  </data>
+	<data name="label_BoxItem_female" xml:space="preserve">
+    <value>أنثى</value>
+  </data>
+	<data name="label_btnRpeat" xml:space="preserve">
+    <value>كرر</value>
+  </data>
+	<data name="label_Btn_Block" xml:space="preserve">
+    <value>حظر</value>
+  </data>
+	<data name="label_Btn_Block_User" xml:space="preserve">
+    <value>حظر المستخدم</value>
+  </data>
+	<data name="label_Btn_cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+	<data name="label5_Close" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+	<data name="label_btn_delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+	<data name="label_Btn_delete_call" xml:space="preserve">
+    <value>حذف المكالمة</value>
+  </data>
+	<data name="label_Btn_delete_chat" xml:space="preserve">
+    <value>حذف الدردشة</value>
+  </data>
+	<data name="label_Btn_Forgot" xml:space="preserve">
+    <value>هل نسيت كلمة المرور؟</value>
+  </data>
+	<data name="label_Btn_Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+	<data name="label_Btn_newAcount" xml:space="preserve">
+    <value>جديد هنا؟ إنشاء حساب جديد</value>
+  </data>
+	<data name="label_Btn_Open_img" xml:space="preserve">
+    <value>فتح</value>
+  </data>
+	<data name="label_Btn_Pause" xml:space="preserve">
+    <value>وقفة</value>
+  </data>
+	<data name="label_Btn_Play" xml:space="preserve">
+    <value>تشغيل</value>
+  </data>
+	<data name="label5_Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+	<data name="label_Calling" xml:space="preserve">
+    <value>اتصال</value>
+  </data>
+	<data name="label_Call_your_friends" xml:space="preserve">
+    <value>اتصل بأصدقائك واستمتع بمحادثة صوتية.</value>
+  </data>
+	<data name="label_ChangeColorButton" xml:space="preserve">
+    <value>تغيير اللون</value>
+  </data>
+	<data name="label_Changed_his_chat_color" xml:space="preserve">
+    <value>غير لون الدردشة</value>
+  </data>
+	<data name="label_Change_language" xml:space="preserve">
+    <value>تغيير اللغة</value>
+  </data>
+	<data name="label_Chk_Desktop_Notifications" xml:space="preserve">
+    <value>إشعارات سطح المكتب</value>
+  </data>
+	<data name="label_Chk_Enable_Sound_notifications" xml:space="preserve">
+		<value>تمكين الإخطارات الصوتية</value>
+	</data>
+	<data name="label_Chk_Play_sound" xml:space="preserve">
+    <value>تشغيل الصوت</value>
+  </data>
+	<data name="label_Chk_Receive_notifications" xml:space="preserve">
+    <value>تلقي إخطارات للرسائل الجديدة</value>
+  </data>
+	<data name="label_Done" xml:space="preserve">
+    <value>انتهى</value>
+  </data>
+	<data name="label_connection" xml:space="preserve">
+    <value>قد يستغرق الأمر بضع دقائق حسب اتصالك</value>
+  </data>
+	<data name="label_Control_your_Notifications" xml:space="preserve">
+    <value>التحكم في إشعاراتك باستخدام.</value>
+  </data>
+	<data name="label_Conversation" xml:space="preserve">
+    <value>محادثة</value>
+  </data>
+	<data name="label_Conversation_Notifications" xml:space="preserve">
+    <value>إخطارات المحادثة</value>
+  </data>
+	<data name="label_cuont_file" xml:space="preserve">
+    <value>ملف</value>
+  </data>
+	<data name="label_cuont_images" xml:space="preserve">
+    <value>الصور</value>
+  </data>
+	<data name="label_cuont_sounds" xml:space="preserve">
+    <value>أصوات</value>
+  </data>
+	<data name="label_cuont_video" xml:space="preserve">
+    <value>فيديو</value>
+  </data>
+	<data name="label_D" xml:space="preserve">
+    <value>D</value>
+  </data>
+	<data name="label_Decline" xml:space="preserve">
+    <value>رفض</value>
+  </data>
+	<data name="label_Declined_your_call" xml:space="preserve">
+    <value>رفض مكالمتك</value>
+  </data>
+	<data name="label_Delete_conversation_ListBoxItem" xml:space="preserve">
+    <value>حذف المحادثة</value>
+  </data>
+	<data name="label_Download" xml:space="preserve">
+    <value>تنزيل</value>
+  </data>
+	<data name="label_Emoji_Icons" xml:space="preserve">
+    <value>رموز إيموجي</value>
+  </data>
+	<data name="label_Empty" xml:space="preserve">
+    <value>فارغ</value>
+  </data>
+	<data name="label_End_Video_Call" xml:space="preserve">
+    <value>إنهاء مكالمة الفيديو</value>
+  </data>
+	<data name="label_Error_Api_Id" xml:space="preserve">
+    <value>معرّف Api للخطأ خاطئ أو لم يتم التحقق من التطبيق</value>
+  </data>
+	<data name="label_Error_found" xml:space="preserve">
+    <value>تم العثور على خطأ ، يرجى المحاولة مرة أخرى في وقت لاحق</value>
+  </data>
+	<data name="label_Everyone_in_this_conversation" xml:space="preserve">
+    <value>سيرى كل من في هذه المحادثة هذا.</value>
+  </data>
+	<data name="label_Full_Screen_Compress" xml:space="preserve">
+    <value>ضغط ملء الشاشة</value>
+  </data>
+	<data name="label_Full_Screen_Expand" xml:space="preserve">
+    <value>توسيع ملء الشاشة</value>
+  </data>
+	<data name="label_gift" xml:space="preserve">
+    <value>هدية</value>
+  </data>
+	<data name="label_GoogleButton" xml:space="preserve">
+    <value>Google</value>
+  </data>
+	<data name="label_H" xml:space="preserve">
+    <value>ح</value>
+  </data>
+	<data name="label_is_calling_you" xml:space="preserve">
+    <value>يتصل بك</value>
+  </data>
+	<data name="label_Item_Files" xml:space="preserve">
+    <value>ملفات</value>
+  </data>
+	<data name="label_Item_Images" xml:space="preserve">
+    <value>الصور</value>
+  </data>
+	<data name="label_Item_Media" xml:space="preserve">
+    <value>الوسائط</value>
+  </data>
+	<data name="label_Item_My_Stickers" xml:space="preserve">
+    <value>ملصقاتي</value>
+  </data>
+	<data name="label_Item_Trending" xml:space="preserve">
+    <value>شائع</value>
+  </data>
+	<data name="label_Keep_me" xml:space="preserve">
+    <value>احتفظ بتسجيل الدخول</value>
+  </data>
+	<data name="label_last_seen" xml:space="preserve">
+    <value>شوهد آخر مرة</value>
+  </data>
+	<data name="label_Lbl_Orvia" xml:space="preserve">
+    <value>أو عن طريق</value>
+  </data>
+	<data name="label_Lbl_Search_User" xml:space="preserve">
+    <value>ابدأ البحث بالكتابة في المربع</value>
+  </data>
+	<data name="label_Lbl_Social_Links" xml:space="preserve">
+    <value>الروابط الاجتماعية</value>
+  </data>
+	<data name="label_Lnk_Choose_file" xml:space="preserve">
+    <value>اختر من ملف</value>
+  </data>
+	<data name="label_Lnk_Clear_all" xml:space="preserve">
+    <value>مسح الكل</value>
+  </data>
+	<data name="label_Lnk_Contact_Us" xml:space="preserve">
+    <value>اتصل بنا</value>
+  </data>
+	<data name="label_Lnk_Manage_local" xml:space="preserve">
+    <value>إدارة التخزين المحلي</value>
+  </data>
+	<data name="label_Lnk_sticker" xml:space="preserve">
+    <value>إدارة وإعادة ترتيب حزم الملصقات</value>
+  </data>
+	<data name="label_Loading" xml:space="preserve">
+    <value>جارٍ التحميل ...</value>
+  </data>
+	<data name="label_Load_More_Messages" xml:space="preserve">
+    <value>تحميل المزيد من الرسائل</value>
+  </data>
+	<data name="label_location" xml:space="preserve">
+    <value>الموقع</value>
+  </data>
+	<data name="label_location_not_available" xml:space="preserve">
+    <value>الموقع غير متاح</value>
+  </data>
+	<data name="label_Login_using_Facebook" xml:space="preserve">
+    <value>تسجيل الدخول باستخدام Facebook</value>
+  </data>
+	<data name="label_Login_using_Instagram" xml:space="preserve">
+    <value>تسجيل الدخول باستخدام Instagram</value>
+  </data>
+	<data name="label_Login_using_Twitter" xml:space="preserve">
+    <value>تسجيل الدخول باستخدام Twitter</value>
+  </data>
+	<data name="label_Login_using_VK" xml:space="preserve">
+    <value>تسجيل الدخول باستخدام VK</value>
+  </data>
+	<data name="label_Logout_Button" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+  </data>
+	<data name="label_M" xml:space="preserve">
+    <value>م</value>
+  </data>
+	<data name="label_Maximize" xml:space="preserve">
+    <value>تكبير</value>
+  </data>
+	<data name="label_MessageBoxText" xml:space="preserve">
+    <value>اكتب رسالتك</value>
+  </data>
+	<data name="label_Message_Notifications" xml:space="preserve">
+    <value>إخطارات الرسائل</value>
+  </data>
+	<data name="label_Min" xml:space="preserve">
+    <value>الحد الأدنى</value>
+  </data>
+	<data name="label_Minimize" xml:space="preserve">
+    <value>تصغير</value>
+  </data>
+	<data name="label_MSG_searchMessages" xml:space="preserve">
+    <value>بحث عن الرسائل</value>
+  </data>
+	<data name="label_NameTextBox" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+	<data name="label_offline" xml:space="preserve">
+    <value>غير متصل</value>
+  </data>
+	<data name="label_Online" xml:space="preserve">
+    <value>عبر الإنترنت</value>
+  </data>
+	<data name="label_Open_File" xml:space="preserve">
+    <value>فتح ملف</value>
+  </data>
+	<data name="label_PasswordBox" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+	<data name="label_Pick_color" xml:space="preserve">
+    <value>اختر لونًا لهذه المحادثة</value>
+  </data>
+	<data name="label_Please_check_your_internet" xml:space="preserve">
+    <value>يرجى التحقق من اتصالك بالإنترنت</value>
+  </data>
+	<data name="label_Please_write_confirm_password" xml:space="preserve">
+		<value>الرجاء كتابة تأكيد كلمة المرور الخاصة بك</value>
+	</data>
+	<data name="label_Please_write_your_Email" xml:space="preserve">
+    <value>الرجاء كتابة بريدك الإلكتروني</value>
+  </data>
+	<data name="label_Please_write_your_password" xml:space="preserve">
+    <value>الرجاء كتابة كلمة المرور الخاصة بك</value>
+  </data>
+	<data name="label_Please_write_your_username" xml:space="preserve">
+    <value>الرجاء كتابة اسم المستخدم الخاص بك</value>
+  </data>
+	<data name="label_ProfileUserAbout" xml:space="preserve">
+    <value>مرحبًا أنا أستخدم</value>
+  </data>
+	<data name="label_ProfileViewLinkButton" xml:space="preserve">
+    <value>مشاهدة الملف الشخصي</value>
+  </data>
+	<data name="label_Refresh" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+	<data name="label_Registerbutton" xml:space="preserve">
+    <value>اشترك!</value>
+  </data>
+	<data name="label_RegisterConfirmPasswordTextBox" xml:space="preserve">
+    <value>تأكيد كلمة المرور</value>
+  </data>
+	<data name="label_RegisterEmailTextBox" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+	<data name="label_RegisterPasswordTextBox" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+	<data name="label_RegisterUsernameTextBox" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+	<data name="label_RightBigText_Signin" xml:space="preserve">
+    <value>اشترك!</value>
+  </data>
+	<data name="label_RightSmallText_Login" xml:space="preserve">
+    <value>ابدأ محادثتك مع عائلتك وأصدقائك.</value>
+  </data>
+	<data name="label_RightSmallText_Signin" xml:space="preserve">
+    <value>انضم إلينا وابدأ في إضافة أصدقائك والمزيد.</value>
+  </data>
+	<data name="label_SearchMesageButton" xml:space="preserve">
+    <value>البحث في المحادثة</value>
+  </data>
+	<data name="label_SearchMsgButton" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+	<data name="label_Sec" xml:space="preserve">
+    <value>ثانية</value>
+  </data>
+	<data name="label_Sel_Gender" xml:space="preserve">
+    <value>الجنس</value>
+  </data>
+	<data name="label_Sel_language" xml:space="preserve">
+     <value>لغة</value>
+  </data>
+	<data name="label_Send" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+	<data name="label_Send_you_an_audio_file" xml:space="preserve">
+    <value>أرسل لك ملف صوتي</value>
+  </data>
+	<data name="label_Send_you_an_file" xml:space="preserve">
+    <value>أرسل لك ملفا</value>
+  </data>
+	<data name="label_Send_you_an_gif_image" xml:space="preserve">
+    <value>أرسل لك صورة gif</value>
+  </data>
+	<data name="label_Send_you_an_image_file" xml:space="preserve">
+    <value>أرسل لك ملف صورة</value>
+  </data>
+	<data name="label_Send_you_an_sticker_file" xml:space="preserve">
+    <value>أرسل لك ملف ملصق</value>
+  </data>
+	<data name="label_Send_you_an_video_file" xml:space="preserve">
+    <value>أرسل لك ملف فيديو</value>
+  </data>
+	<data name="label_Settings" xml:space="preserve">
+    <value>إعدادات</value>
+  </data>
+	<data name="label_Settings_General" xml:space="preserve">
+    <value>عام</value>
+  </data>
+	<data name="label_Settings_Notifications" xml:space="preserve">
+    <value>الإخطارات</value>
+  </data>
+	<data name="label_Share_files" xml:space="preserve">
+    <value>مشاركة الملفات مع</value>
+  </data>
+	<data name="label_TextBlockMessege" xml:space="preserve">
+    <value>الرجاء الانتظار ..</value>
+  </data>
+	<data name="label_total_size" xml:space="preserve">
+    <value>الحجم الإجمالي</value>
+  </data>
+	<data name="label_Txt_Back" xml:space="preserve">
+    <value>رجوع</value>
+  </data>
+	<data name="label_Txt_Birthday" xml:space="preserve">
+    <value>عيد ميلاد</value>
+  </data>
+	<data name="label_Txt_Email" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+	<data name="label_Txt_Facebook" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+	<data name="label_Txt_Instagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+	<data name="label_txt_Local_storage" xml:space="preserve">
+    <value>تخزين محلي</value>
+  </data>
+	<data name="label_Txt_Phone_number" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
+	<data name="label_Txt_School" xml:space="preserve">
+    <value>المدرسة</value>
+  </data>
+	<data name="label_Txt_SearchBoxOnline" xml:space="preserve">
+    <value>بحث عن مستخدمين</value>
+  </data>
+	<data name="label_Txt_searchGifs" xml:space="preserve">
+    <value>البحث عن صور متحركة</value>
+  </data>
+	<data name="label_Txt_searchMessages" xml:space="preserve">
+    <value>بحث عن مستخدمين</value>
+  </data>
+	<data name="label_Txt_Search_BoxContact" xml:space="preserve">
+    <value>بحث عن مستخدمين</value>
+  </data>
+	<data name="label_Txt_Twitter" xml:space="preserve">
+    <value>تويتر</value>
+  </data>
+	<data name="label_Txt_Username" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+	<data name="label_Txt_Vk" xml:space="preserve">
+    <value>فكونتاكتي</value>
+  </data>
+	<data name="label_Txt_Website" xml:space="preserve">
+    <value>موقع الويب</value>
+  </data>
+	<data name="label_Txt_Youtube" xml:space="preserve">
+    <value>YoutubePlay</value>
+  </data>
+	<data name="label_Typping" xml:space="preserve">
+    <value>Typping ...</value>
+  </data>
+	<data name="label_Video_call" xml:space="preserve">
+    <value>مكالمة فيديو</value>
+  </data>
+	<data name="lable5_Pinned" xml:space="preserve">
+    <value>مثبت</value>
+  </data>
+	<data name="label5_WhoCanMessageMe" xml:space="preserve">
+    <value>من يمكنه مراسلتي؟</value>
+  </data>
+	<data name="label5_AddParticipant" xml:space="preserve">
+    <value>إضافة مشارك</value>
+  </data>
+	<data name="label5_ChooseImage" xml:space="preserve">
+    <value>اختر صورة</value>
+  </data>
+	<data name="label5_DeleteGroup" xml:space="preserve">
+    <value>حذف المجموعة</value>
+  </data>
+	<data name="label5_Disable" xml:space="preserve">
+    <value>تعطيل</value>
+  </data>
+	<data name="label5_Enable" xml:space="preserve">
+    <value>تمكين</value>
+  </data>
+	<data name="label5_ExitGroup" xml:space="preserve">
+    <value>خروج المجموعة</value>
+  </data>
+	<data name="label5_Send" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+	<data name="label5_EarnUpTo" xml:space="preserve">
+    <value>اكسب ما يصل إلى</value>
+  </data>
+	<data name="label5_ForEachUserYourReferToUs" xml:space="preserve">
+    <value>لكل مستخدم تحيله إلينا</value>
+  </data>
+	<data name="label5_LastPinnedMessage" xml:space="preserve">
+    <value>آخر رسالة مثبتة</value>
+  </data>
+	<data name="label5_VoiceMessage" xml:space="preserve">
+    <value>رسالة صوتية</value>
+  </data>
+	<data name="label3_yesterday" xml:space="preserve">
+    <value>الامس</value>
+  </data>
+	<data name="label5_FollowRequests" xml:space="preserve">
+    <value>متابعة الطلبات</value>
+  </data>
+</root>

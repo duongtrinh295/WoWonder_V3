@@ -1,0 +1,112 @@
+﻿<Window x:Class="WoWonderDesktop.Forms.SendVideoCall"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoWonderDesktop.Forms"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:properties="clr-namespace:WoWonderDesktop.language"
+        mc:Ignorable="d"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Grayscale"
+        FontFamily="{StaticResource Roboto}"
+        Title="Send_Video_Call"  WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"  Height="290" Width="390">
+    <Window.Resources>
+        <Style TargetType="{x:Type local:SendVideoCall}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <!-- Outer border with the dropshadow margin -->
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                            <!-- Main window outline -->
+                            <Grid>
+                                <!-- Opacity mask for corners on grid -->
+                                <Border x:Name="Container"
+                                        Background="{StaticResource BackgroundLightBrush}"
+                                        CornerRadius="10" />
+                                <!-- Window border and dropshadown -->
+                                <Border CornerRadius="10"
+                                        Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <!-- The main window content -->
+                                <Grid Loaded="FrameworkElement_OnLoaded">
+                                    <!-- Corner clipping -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+                                    <Grid.RowDefinitions>
+                                        <!-- Title Bar -->
+                                        <RowDefinition Height="2" />
+                                        <!-- Window Content -->
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <!-- Title Bar -->
+
+                                    <!-- Page Content -->
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="6" CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0" />
+    </WindowChrome.WindowChrome>
+
+    <Border Padding="5" x:Name="Border" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Image x:Name="ProfileImage" HorizontalAlignment="Center" VerticalAlignment="Top" Source="/Images/no_profile_image_circle.png" Width="233" Height="120">
+                    <Image.Clip>
+                        <EllipseGeometry  Center="58,58" RadiusX="58" RadiusY="58" />
+                    </Image.Clip>
+                </Image>
+                <StackPanel Margin="10" >
+                    <Label x:Name="Lbl_callingUser" FontWeight="Normal" Margin="0 20 0 0" HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                           FontFamily="{StaticResource RobotoRegular}" FontSize="14">
+                        <Label.Content>
+                            <AccessText x:Name="TextOfcall" TextWrapping="Wrap" Text="{x:Static properties:LocalResources.label_Calling}"/>
+                        </Label.Content>
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 0 0 0" >
+                    <Button Grid.Column="0" Name="Btn_cancel" Margin="10" HorizontalAlignment="Right" 
+                            Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                            VerticalAlignment="Center" Width="44" Height="44"
+                            ToolTip="{x:Static properties:LocalResources.label5_Close}"
+                            BorderBrush="#ff2f2f"
+                            Background="#ff2f2f" 
+                            Click="Btn_cancel_Click"  >
+                        <materialDesign:PackIcon Kind="Close" Margin="-1,0,0,0" Foreground="#fff" Width="24" Height="24" />
+                    </Button>
+                    <!--<Button x:Name="Btn_cancel" FontWeight="SemiBold" Margin="10"
+                            FontStretch="Condensed" FontFamily="{StaticResource RobotoBold}" 
+                            Background="Transparent" HorizontalContentAlignment="Right" HorizontalAlignment="Right" 
+                            BorderBrush="Transparent" Content="Decline" Foreground="{StaticResource WownderDefaultBrush}"
+                            FontSize="13" Click="Btn_cancel_Click"
+                    />
+                    <Button x:Name="Btn_Block" Margin="10"
+                            FontWeight="SemiBold" FontStretch="Condensed" FontFamily="{StaticResource RobotoBold}"
+                            Background="{StaticResource WownderDefaultBrush}" HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                            BorderBrush="Transparent" Content="Accept" Foreground="White" 
+                            FontSize="13"  Click="Btn_Accept_Click"
+                    />-->
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

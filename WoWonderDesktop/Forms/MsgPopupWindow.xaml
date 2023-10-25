@@ -1,0 +1,63 @@
+﻿<Window x:Class="WoWonderDesktop.Forms.MsgPopupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" x:Name="PopUpform"
+        Title="Notification Popup" Width="300" SizeToContent="Height"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Grayscale"
+        FontFamily="{StaticResource Roboto}"
+        WindowStyle="None"  AllowsTransparency="True" Background="Transparent">
+    <Grid RenderTransformOrigin="0,1" Height="84" >
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="15" Color="#000" Direction="-90" RenderingBias="Performance" ShadowDepth="2" Opacity="0.2"/>
+        </Grid.Effect>
+        <!-- Notification area -->
+        <Border x:Name="Backround" BorderThickness="1" Background="White" BorderBrush="White" CornerRadius="2" KeyDown="Backround_OnKeyDown">
+
+            <StackPanel Margin="20,19,-1,13" Height="50" >
+                <Border Name="mask" Background="White" CornerRadius="3" Height="48" Margin="0,4,234,0" />
+                <StackPanel Height="48" Margin="0,-47,234,0" >
+                    <StackPanel.OpacityMask>
+                        <VisualBrush Visual="{Binding ElementName=mask}"/>
+                    </StackPanel.OpacityMask>
+                    <Image  x:Name="profileimage" Stretch="UniformToFill" HorizontalAlignment="Left" Height="45"  Width="45">
+                        <Image.Clip>
+                            <EllipseGeometry Center="21,21" RadiusX="21" RadiusY="21" />
+                        </Image.Clip>
+                    </Image>
+                    <Rectangle Height="50" Fill="Red"/>
+                    <Rectangle Height="50" Fill="White"/>
+                    <Rectangle Height="50" Fill="Blue"/>
+                </StackPanel>
+
+                <TextBlock  x:Name="P_username" HorizontalAlignment="Left" Margin="51,-49,0,0" VerticalAlignment="Center" TextWrapping="Wrap" Height="48" Width="228"><Bold><Run /></Bold></TextBlock>
+                <TextBlock x:Name="P_msgContent" Width="220" MaxWidth="220" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="52,-31,0,0" VerticalAlignment="Center"  Height="30" />
+            </StackPanel>
+        </Border>
+
+        <!-- Animation -->
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                            <SplineDoubleKeyFrame KeyTime="0:0:0" Value="0"/>
+                            <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <SplineDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+                                <SplineDoubleKeyFrame KeyTime="0:0:4" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>-->
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+
+        <Grid.RenderTransform>
+            <ScaleTransform ScaleY="1" />
+        </Grid.RenderTransform>
+
+    </Grid>
+</Window>

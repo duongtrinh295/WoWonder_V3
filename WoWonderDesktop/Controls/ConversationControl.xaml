@@ -1,0 +1,1855 @@
+﻿<UserControl x:Class="WoWonderDesktop.Controls.ConversationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:controls="clr-namespace:WoWonderDesktop.Helpers.Controls"
+             xmlns:properties="clr-namespace:WoWonderDesktop.language"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             mc:Ignorable="d" 
+             Height="Auto"
+             Width="Auto" 
+             x:Name="_conversations">
+
+    <UserControl.Resources>
+
+        <!-- Text_DataTemplate -->
+        <DataTemplate x:Key="TextDataTemplate">
+            <Border Padding="5" SnapsToDevicePixels="True" >
+
+                <StackPanel Orientation="Horizontal" Height="Auto" MinHeight="60" MaxWidth="500" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <Ellipse Height="40" Width="40" VerticalAlignment="Top"  Margin="0,10,0,0">
+                        <Ellipse.Fill>
+                            <ImageBrush  x:Name="ImageUser"  ImageSource="{Binding Img_user_message, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImageAvatar}, TargetNullValue={StaticResource DefaultImageAvatar}}"  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<controls1:RoundProfileButton Tap="ImageUser_OnTap" Tag="{Binding Id}"  x:Name="ImageUser" Height="15" Width="15" ProfileImageSource="{Binding Img_user_message}" IsOnlineVisibility="Collapsed" IsOnline="True" StrokeBrush="#2a2e4d" VerticalAlignment="Top"  Margin="0,10,0,0"/>-->
+
+                    <StackPanel Orientation="Vertical"  Margin="10,0,0,0" >
+
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.Triggers>
+
+                                <!-- Mouse over shows time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <!-- Mouse leave hides time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                            </Grid.Triggers>
+
+                            <StackPanel Orientation="Horizontal" >
+                                <!--Name-->
+                                <TextBlock Text="{Binding UserName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Time-->
+                                <TextBlock Text="{Binding TimeText}" Margin="2,0,0,0" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Check-->
+                                <materialDesign:PackIcon Visibility="{Binding SeenVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="{Binding IconSeen}" Foreground="#0288D1" Width="17" Height="17" />
+
+                                <!--Favorite-->
+                                <materialDesign:PackIcon Visibility="{Binding FavoriteVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Star" Foreground="#F9A825" Width="17" Height="17" />
+
+                                <!--Reaction-->
+                                <Image Margin="2,0,0,0"  Source="{Binding ReactionImage}" Visibility="{Binding ReactionVisibility}" Stretch="UniformToFill" Width="20" Height="20">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <!--Menu Message bubble-->
+                                <StackPanel x:Name="MenuMessageStack" Margin="5,0,0,0"  Opacity="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                    <!--Reaction Menu-->
+                                    <materialDesign:PopupBox x:Name="ReactionMenuMessage" Padding="0" PopupMode="Click" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="Smiley" Margin="5" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PopupBox.PopupContent>
+                                            <Border CornerRadius="10" Padding="0" >
+                                                <ListBox MinWidth="100" ItemsSource="{Binding ReactionMessageItems}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="ReactionMenuMessage_OnSelectionChanged">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Image Margin="-3,0,-3,0" ToolTip="{Binding React_Name}" Source="{Binding React_Image}" Stretch="UniformToFill" Width="32" Height="32">
+                                                                <Image.Clip>
+                                                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
+                                                                </Image.Clip>
+                                                            </Image>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                </ListBox>
+                                            </Border>
+                                        </materialDesign:PopupBox.PopupContent>
+                                    </materialDesign:PopupBox>
+
+                                    <!--Menu Message-->
+                                    <materialDesign:PopupBox x:Name="DropDownMenuMessage"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Margin="5"  HorizontalAlignment="Center"  HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="DotsVertical" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <ListBox MinWidth="150" ItemsSource="{Binding MenuMessageItems}"  SelectionMode="Multiple" MouseMove="DropDownMenuMessage_OnMouseMove"  SelectionChanged="DropDownMenuMessage_OnSelectionChanged" />
+                                    </materialDesign:PopupBox>
+
+                                </StackPanel>
+
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Forwarded Message -->
+                        <StackPanel  Orientation="Horizontal" Visibility="{Binding Forwarded_Visibility}">
+                            <materialDesign:PackIcon Kind="ShareOutline" Foreground="#888888" Width="15" Height="15" Margin="5"  />
+                            <TextBlock Text="{x:Static properties:LocalResources.label5_Forwarded}" Margin="0,5,0,0"  Foreground="#888888"  HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource RobotoBold}" />
+                        </StackPanel>
+
+                        <!--#region Replay Message-->
+                        <StackPanel HorizontalAlignment="Stretch" >
+
+                            <Border x:Name="ReplyMessagePanel" Visibility="{Binding ReplyPanel_Visibility}" Height="40" Margin="1" VerticalAlignment="Stretch" >
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0"  Width="4" Margin="0" HorizontalAlignment="Right" Background="{StaticResource WownderDefaultBrush}" />
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0"  Orientation="Vertical" VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="TxtOwnerName" Text="{Binding Reply_TxtOwnerName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                            <TextBlock x:Name="TxtMessageType" Text="{Binding Reply_TxtMessageType}" Visibility="{Binding Reply_TxtMessageType_Visibility}" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TxtShortMessage" Text="{Binding Reply_TxtShortMessage}" Visibility="{Binding Reply_TxtShortMessage_Visibility}" Margin="0,3,0,0" Foreground="#888888" Padding="2" />
+
+                                    </StackPanel>
+
+                                    <Image x:Name="MessageFileThumbnail" Grid.Column="2" Margin="1" Visibility="{Binding Reply_MessageFileThumbnail_Visibility}" Width="40" Height="auto" Source="{Binding Reply_MessageFileThumbnail}" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                        <!--#region Text Message-->
+                        <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,0">
+
+                            <RichTextBox x:Name="RichTextBox1"  FontFamily="{StaticResource RobotoRegular}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                         Foreground="Black" BorderBrush="Transparent" Background="Transparent" IsReadOnly="True"
+                                         IsDocumentEnabled="True" FontSize="13" controls:RtbNavigationService.Content="{Binding Text}" />
+                        </StackPanel>
+                        <!--#endregion-->
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+        <!--ImageDataTemplate-->
+        <DataTemplate x:Key="ImageDataTemplate">
+            <Border Padding="5" SnapsToDevicePixels="True" >
+
+                <StackPanel Orientation="Horizontal" Height="Auto" MinHeight="60" MaxWidth="500" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <Ellipse Height="40" Width="40" VerticalAlignment="Top"  Margin="0,10,0,0">
+                        <Ellipse.Fill>
+                            <ImageBrush  x:Name="ImageUser"  ImageSource="{Binding Img_user_message, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImageAvatar}, TargetNullValue={StaticResource DefaultImageAvatar}}"  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<controls1:RoundProfileButton Tap="ImageUser_OnTap" Tag="{Binding Id}"  x:Name="ImageUser" Height="15" Width="15" ProfileImageSource="{Binding Img_user_message}" IsOnlineVisibility="Collapsed" IsOnline="True" StrokeBrush="#2a2e4d" VerticalAlignment="Top"  Margin="0,10,0,0"/>-->
+
+                    <StackPanel Orientation="Vertical"  Margin="10,0,0,0" >
+
+                        <Grid>
+
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.Triggers>
+
+                                <!-- Mouse over shows time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <!-- Mouse leave hides time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                            </Grid.Triggers>
+
+                            <StackPanel Orientation="Horizontal">
+                                <!--Name-->
+                                <TextBlock Text="{Binding UserName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Time-->
+                                <TextBlock Text="{Binding TimeText}" Margin="2,0,0,0" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Check-->
+                                <materialDesign:PackIcon Visibility="{Binding SeenVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Check" Foreground="#0288D1" Width="17" Height="17" />
+
+                                <!--Favorite-->
+                                <materialDesign:PackIcon Visibility="{Binding FavoriteVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Star" Foreground="#F9A825" Width="17" Height="17" />
+
+                                <!--Reaction-->
+                                <Image Margin="2,0,0,0"  Source="{Binding ReactionImage}" Visibility="{Binding ReactionVisibility}" Stretch="UniformToFill" Width="20" Height="20">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <!--Menu Message bubble-->
+                                <StackPanel x:Name="MenuMessageStack" Margin="5,0,0,0" Opacity="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                    <!--Reaction Menu-->
+                                    <materialDesign:PopupBox x:Name="ReactionMenuMessage" Padding="0" PopupMode="Click" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="Smiley" Margin="5" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PopupBox.PopupContent>
+                                            <Border CornerRadius="10" Padding="0" >
+                                                <ListBox MinWidth="100" ItemsSource="{Binding ReactionMessageItems}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="ReactionMenuMessage_OnSelectionChanged">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Image Margin="-3,0,-3,0" ToolTip="{Binding React_Name}" Source="{Binding React_Image}" Stretch="UniformToFill" Width="32" Height="32">
+                                                                <Image.Clip>
+                                                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
+                                                                </Image.Clip>
+                                                            </Image>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                </ListBox>
+                                            </Border>
+                                        </materialDesign:PopupBox.PopupContent>
+                                    </materialDesign:PopupBox>
+
+                                    <!--Menu Message-->
+                                    <materialDesign:PopupBox x:Name="DropDownMenuMessage"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Margin="5"  HorizontalAlignment="Center"  HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="DotsVertical" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <ListBox MinWidth="150" ItemsSource="{Binding MenuMessageItems}"  SelectionMode="Multiple" MouseMove="DropDownMenuMessage_OnMouseMove" SelectionChanged="DropDownMenuMessage_OnSelectionChanged" />
+                                    </materialDesign:PopupBox>
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                        <!-- Forwarded Message -->
+                        <StackPanel  Orientation="Horizontal" Visibility="{Binding Forwarded_Visibility}">
+                            <materialDesign:PackIcon Kind="ShareOutline" Foreground="#888888" Width="15" Height="15" Margin="5"  />
+                            <TextBlock Text="{x:Static properties:LocalResources.label5_Forwarded}" Margin="0,5,0,0"  Foreground="#888888"  HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource RobotoBold}" />
+                        </StackPanel>
+
+                        <!--#region Replay Message-->
+                        <StackPanel HorizontalAlignment="Stretch" >
+
+                            <Border x:Name="ReplyMessagePanel" Visibility="{Binding ReplyPanel_Visibility}" Height="40" Margin="1" VerticalAlignment="Stretch" >
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0"  Width="4" Margin="0" HorizontalAlignment="Right" Background="{StaticResource WownderDefaultBrush}" />
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0"  Orientation="Vertical" VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="TxtOwnerName" Text="{Binding Reply_TxtOwnerName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                            <TextBlock x:Name="TxtMessageType" Text="{Binding Reply_TxtMessageType}" Visibility="{Binding Reply_TxtMessageType_Visibility}" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TxtShortMessage" Text="{Binding Reply_TxtShortMessage}" Visibility="{Binding Reply_TxtShortMessage_Visibility}" Margin="0,3,0,0" Foreground="#888888" Padding="2" />
+
+                                    </StackPanel>
+
+                                    <Image x:Name="MessageFileThumbnail" Grid.Column="2" Margin="1" Visibility="{Binding Reply_MessageFileThumbnail_Visibility}" Width="40" Height="auto" Source="{Binding Reply_MessageFileThumbnail}" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                        <!--#region Image Message-->
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal"  Margin="0,5,0,0">
+
+                            <Grid>
+                                <Grid.Triggers>
+                                    <!-- Mouse over shows time -->
+                                    <EventTrigger >
+                                        <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetName="SettingsImageStack" Storyboard.TargetProperty="Opacity">
+                                                <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+
+                                    </EventTrigger>
+
+                                    <!-- Mouse leave hides time -->
+                                    <EventTrigger >
+                                        <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetName="SettingsImageStack" Storyboard.TargetProperty="Opacity">
+                                                <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+
+                                    </EventTrigger>
+                                </Grid.Triggers>
+
+                                <Border CornerRadius="10" Width="300" Height="300" MaxWidth="300" MaxHeight="300">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="Fill" ImageSource="{Binding Media, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImagePlacholder}, TargetNullValue={StaticResource DefaultImagePlacholder}}"/>
+                                    </Border.Background>
+                                </Border>
+
+                                <StackPanel Opacity="0"  x:Name="SettingsImageStack" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+
+                                    <Button  Margin="0 8 8 0" HorizontalAlignment="Right"  x:Name="Btn_Open_img"
+                                             Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                             VerticalAlignment="Top" Width="34" Height="34"
+                                             RenderTransformOrigin="1.366,0.72"  ToolTip="{x:Static properties:LocalResources.label_Btn_Open_img}"
+                                             BorderBrush="{StaticResource WownderDarkBrush}"
+                                             Background="{StaticResource WownderDarkBrush}" 
+                                             Click="Btn_Open_img_OnClick" CommandParameter="{Binding Id}" >
+
+                                        <materialDesign:PackIcon Margin="5,3,0,0" Kind="OpenInApp" Foreground="#fff" Width="23" Height="23" />
+                                    </Button>
+
+                                    <Button  Margin="0 8 8 0" HorizontalAlignment="Right"  x:Name="Btn_Save_img"
+                                             Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                             VerticalAlignment="Top" Width="34" Height="34"
+                                             RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label5_Save}"
+                                             BorderBrush="{StaticResource WownderDefaultBrush}"
+                                             Background="{StaticResource WownderDefaultBrush}" 
+                                             Click="Btn_Save_img_OnClick" CommandParameter="{Binding Id}"
+                                             Visibility="{Binding  Save_img_Visibility}" >
+                                        <materialDesign:PackIcon  Margin="5,3,0,0" Kind="ContentSave" Foreground="#fff" Width="23" Height="23" />
+                                    </Button>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+        <!--SoundDataTemplate-->
+        <DataTemplate x:Key="SoundDataTemplate">
+            <Border Padding="5" SnapsToDevicePixels="True" >
+
+                <StackPanel Orientation="Horizontal" Height="Auto" MinHeight="60" MaxWidth="500" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <Ellipse Height="40" Width="40" VerticalAlignment="Top"  Margin="0,10,0,0">
+                        <Ellipse.Fill>
+                            <ImageBrush  x:Name="ImageUser"  ImageSource="{Binding Img_user_message, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImageAvatar}, TargetNullValue={StaticResource DefaultImageAvatar}}"  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<controls1:RoundProfileButton Tap="ImageUser_OnTap" Tag="{Binding Id}"  x:Name="ImageUser" Height="15" Width="15" ProfileImageSource="{Binding Img_user_message}" IsOnlineVisibility="Collapsed" IsOnline="True" StrokeBrush="#2a2e4d" VerticalAlignment="Top"  Margin="0,10,0,0"/>-->
+
+                    <StackPanel Orientation="Vertical"  Margin="10,0,0,0" >
+
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.Triggers>
+
+                                <!-- Mouse over shows time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <!-- Mouse leave hides time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                            </Grid.Triggers>
+
+                            <StackPanel Orientation="Horizontal" >
+                                <!--Name-->
+                                <TextBlock Text="{Binding UserName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Time-->
+                                <TextBlock Text="{Binding TimeText}" Margin="2,0,0,0" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Check-->
+                                <materialDesign:PackIcon Visibility="{Binding SeenVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Check" Foreground="#0288D1" Width="17" Height="17" />
+
+                                <!--Favorite-->
+                                <materialDesign:PackIcon Visibility="{Binding FavoriteVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Star" Foreground="#F9A825" Width="17" Height="17" />
+
+                                <!--Reaction-->
+                                <Image Margin="2,0,0,0"  Source="{Binding ReactionImage}" Visibility="{Binding ReactionVisibility}" Stretch="UniformToFill" Width="20" Height="20">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <!--Menu Message bubble-->
+                                <StackPanel x:Name="MenuMessageStack" Margin="5,0,0,0"  Opacity="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                    <!--Reaction Menu-->
+                                    <materialDesign:PopupBox x:Name="ReactionMenuMessage" Padding="0" PopupMode="Click" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="Smiley" Margin="5" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PopupBox.PopupContent>
+                                            <Border CornerRadius="10" Padding="0" >
+                                                <ListBox MinWidth="100" ItemsSource="{Binding ReactionMessageItems}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="ReactionMenuMessage_OnSelectionChanged">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Image Margin="-3,0,-3,0" ToolTip="{Binding React_Name}" Source="{Binding React_Image}" Stretch="UniformToFill" Width="32" Height="32">
+                                                                <Image.Clip>
+                                                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
+                                                                </Image.Clip>
+                                                            </Image>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                </ListBox>
+                                            </Border>
+                                        </materialDesign:PopupBox.PopupContent>
+                                    </materialDesign:PopupBox>
+
+                                    <!--Menu Message-->
+                                    <materialDesign:PopupBox x:Name="DropDownMenuMessage"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Margin="5"  HorizontalAlignment="Center"  HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="DotsVertical" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <ListBox MinWidth="150" ItemsSource="{Binding MenuMessageItems}"  SelectionMode="Multiple" MouseMove="DropDownMenuMessage_OnMouseMove" SelectionChanged="DropDownMenuMessage_OnSelectionChanged" />
+                                    </materialDesign:PopupBox>
+
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Grid>
+
+                        <!-- Forwarded Message -->
+                        <StackPanel  Orientation="Horizontal" Visibility="{Binding Forwarded_Visibility}">
+                            <materialDesign:PackIcon Kind="ShareOutline" Foreground="#888888" Width="15" Height="15" Margin="5"  />
+                            <TextBlock Text="{x:Static properties:LocalResources.label5_Forwarded}" Margin="0,5,0,0"  Foreground="#888888"  HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource RobotoBold}" />
+                        </StackPanel>
+
+                        <!--#region Replay Message-->
+                        <StackPanel HorizontalAlignment="Stretch" >
+
+                            <Border x:Name="ReplyMessagePanel" Visibility="{Binding ReplyPanel_Visibility}" Height="40" Margin="1" VerticalAlignment="Stretch" >
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0"  Width="4" Margin="0" HorizontalAlignment="Right" Background="{StaticResource WownderDefaultBrush}" />
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0"  Orientation="Vertical" VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="TxtOwnerName" Text="{Binding Reply_TxtOwnerName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                            <TextBlock x:Name="TxtMessageType" Text="{Binding Reply_TxtMessageType}" Visibility="{Binding Reply_TxtMessageType_Visibility}" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TxtShortMessage" Text="{Binding Reply_TxtShortMessage}" Visibility="{Binding Reply_TxtShortMessage_Visibility}" Margin="0,3,0,0" Foreground="#888888" Padding="2" />
+
+                                    </StackPanel>
+
+                                    <Image x:Name="MessageFileThumbnail" Grid.Column="2" Margin="1" Visibility="{Binding Reply_MessageFileThumbnail_Visibility}" Width="40" Height="auto" Source="{Binding Reply_MessageFileThumbnail}" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                        <!--#region sound Message-->
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Background="#f3f3f3" Margin="0,5,0,0">
+
+                            <!-- content message -->
+                            <StackPanel Orientation="Vertical"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="8" >
+
+                                <StackPanel Orientation="Vertical" Margin="0 0 0 -2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!-- Sound Download-->
+                                        <Button x:Name="Btn_Sound_Download" Margin="5 2 0 0" HorizontalAlignment="Right" Visibility="{Binding Download_Visibility}"
+                                            Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                            VerticalAlignment="Center" Width="34" Height="34"
+                                            RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Download}"
+                                            BorderBrush="{StaticResource WownderDefaultBrush}"
+                                            Background="{StaticResource WownderDefaultBrush}" 
+                                            Click="Btn_Sound_Download_OnClick"  CommandParameter="{Binding Id}"   >
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="Download" Foreground="#fff" Width="23" Height="23" />
+                                        </Button>
+
+                                        <ProgressBar Visibility="{Binding ProgresSVisibility}" Style="{StaticResource MaterialDesignCircularProgressBar}"                     
+                                             Value="{Binding Progress_Value}"  Width="30" Height="30"
+                                             VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5 5 0 0"/>
+
+                                        <Button x:Name="Btn_Play" Margin="5 2 0 0" HorizontalAlignment="Right" Visibility="{Binding Play_Visibility}"
+                                        Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                        VerticalAlignment="Center" Width="34" Height="34"
+                                        RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Btn_Play}"
+                                        BorderBrush="{StaticResource WownderDefaultBrush}"
+                                        Background="{StaticResource WownderDefaultBrush}" 
+                                        Click="Btn_Play_OnClick"  CommandParameter="{Binding Id}"
+                                >
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="Play" Foreground="#fff" Width="23" Height="23" />
+                                        </Button>
+
+                                        <Button x:Name="Btn_Pause" Margin="5 2 0 0" HorizontalAlignment="Right" Visibility="{Binding Pause_Visibility}"
+                                        Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                        VerticalAlignment="Center" Width="34" Height="34"
+                                        RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Btn_Pause}"
+                                        BorderBrush="{StaticResource WownderDefaultBrush}"
+                                        Background="{StaticResource WownderDefaultBrush}" 
+                                        Click="Btn_Pause_OnClick"  CommandParameter="{Binding Id}"
+                                >
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="Pause" Foreground="#fff" Width="23" Height="23" />
+                                        </Button>
+
+                                        <Slider Value="{Binding sound_slider_value}" ValueChanged="RangeBase_OnValueChanged"
+                                        Thumb.DragCompleted="Thumb_OnDragCompleted" IsMoveToPointEnabled ="True" DragEnter="UIElement_OnDragEnter" 
+                                        Minimum="0" Width="170" Margin="10 0 5 0" 
+                                        VerticalAlignment="Center" HorizontalAlignment="Right" />
+
+                                    </StackPanel>
+                                    <!-- sound time -->
+                                    <TextBlock Text="{Binding sound_time }"
+                                       Foreground="Black"
+                                       HorizontalAlignment="Right"
+                                       FontSize="10"
+                                       FontFamily="{StaticResource RobotoRegular}"
+                                       Margin="0 -15 5 -5"/>
+                                </StackPanel>
+
+
+                            </StackPanel>
+                        </StackPanel>
+                        <!--#endregion-->
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+        <!--StickerDataTemplate-->
+        <DataTemplate x:Key="StickerDataTemplate">
+            <Border Padding="5" SnapsToDevicePixels="True" >
+
+                <StackPanel Orientation="Horizontal" Height="Auto" MinHeight="60" MaxWidth="500" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <Ellipse Height="40" Width="40" VerticalAlignment="Top"  Margin="0,10,0,0">
+                        <Ellipse.Fill>
+                            <ImageBrush  x:Name="ImageUser"  ImageSource="{Binding Img_user_message, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImageAvatar}, TargetNullValue={StaticResource DefaultImageAvatar}}"  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<controls1:RoundProfileButton Tap="ImageUser_OnTap" Tag="{Binding Id}"  x:Name="ImageUser" Height="15" Width="15" ProfileImageSource="{Binding Img_user_message}" IsOnlineVisibility="Collapsed" IsOnline="True" StrokeBrush="#2a2e4d" VerticalAlignment="Top"  Margin="0,10,0,0"/>-->
+
+                    <StackPanel Orientation="Vertical"  Margin="10,0,0,0" >
+
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.Triggers>
+
+                                <!-- Mouse over shows time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <!-- Mouse leave hides time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                            </Grid.Triggers>
+
+                            <StackPanel Orientation="Horizontal" >
+                                <!--Name-->
+                                <TextBlock Text="{Binding UserName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Time-->
+                                <TextBlock Text="{Binding TimeText}" Margin="2,0,0,0" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Check-->
+                                <materialDesign:PackIcon Visibility="{Binding SeenVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Check" Foreground="#0288D1" Width="17" Height="17" />
+
+                                <!--Favorite-->
+                                <materialDesign:PackIcon Visibility="{Binding FavoriteVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Star" Foreground="#F9A825" Width="17" Height="17" />
+
+                                <!--Reaction-->
+                                <Image Margin="2,0,0,0"  Source="{Binding ReactionImage}" Visibility="{Binding ReactionVisibility}" Stretch="UniformToFill" Width="20" Height="20">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <!--Menu Message bubble-->
+                                <StackPanel x:Name="MenuMessageStack" Margin="5,0,0,0"  Opacity="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                    <!--Reaction Menu-->
+                                    <materialDesign:PopupBox x:Name="ReactionMenuMessage" Padding="0" PopupMode="Click" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="Smiley" Margin="5" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PopupBox.PopupContent>
+                                            <Border CornerRadius="10" Padding="0" >
+                                                <ListBox MinWidth="100" ItemsSource="{Binding ReactionMessageItems}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="ReactionMenuMessage_OnSelectionChanged">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Image Margin="-3,0,-3,0" ToolTip="{Binding React_Name}" Source="{Binding React_Image}" Stretch="UniformToFill" Width="32" Height="32">
+                                                                <Image.Clip>
+                                                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
+                                                                </Image.Clip>
+                                                            </Image>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                </ListBox>
+                                            </Border>
+                                        </materialDesign:PopupBox.PopupContent>
+                                    </materialDesign:PopupBox>
+
+                                    <!--Menu Message-->
+                                    <materialDesign:PopupBox x:Name="DropDownMenuMessage"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Margin="5"  HorizontalAlignment="Center"  HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="DotsVertical" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <ListBox MinWidth="150" ItemsSource="{Binding MenuMessageItems}"  SelectionMode="Multiple" MouseMove="DropDownMenuMessage_OnMouseMove" SelectionChanged="DropDownMenuMessage_OnSelectionChanged" />
+                                    </materialDesign:PopupBox>
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                        <!-- Forwarded Message -->
+                        <StackPanel  Orientation="Horizontal" Visibility="{Binding Forwarded_Visibility}">
+                            <materialDesign:PackIcon Kind="ShareOutline" Foreground="#888888" Width="15" Height="15" Margin="5"  />
+                            <TextBlock Text="{x:Static properties:LocalResources.label5_Forwarded}" Margin="0,5,0,0"  Foreground="#888888"  HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource RobotoBold}" />
+                        </StackPanel>
+
+                        <!--#region Replay Message-->
+                        <StackPanel HorizontalAlignment="Stretch" >
+
+                            <Border x:Name="ReplyMessagePanel" Visibility="{Binding ReplyPanel_Visibility}" Height="40" Margin="1" VerticalAlignment="Stretch" >
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0"  Width="4" Margin="0" HorizontalAlignment="Right" Background="{StaticResource WownderDefaultBrush}" />
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0"  Orientation="Vertical" VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="TxtOwnerName" Text="{Binding Reply_TxtOwnerName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                            <TextBlock x:Name="TxtMessageType" Text="{Binding Reply_TxtMessageType}" Visibility="{Binding Reply_TxtMessageType_Visibility}" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TxtShortMessage" Text="{Binding Reply_TxtShortMessage}" Visibility="{Binding Reply_TxtShortMessage_Visibility}" Margin="0,3,0,0" Foreground="#888888" Padding="2" />
+
+                                    </StackPanel>
+
+                                    <Image x:Name="MessageFileThumbnail" Grid.Column="2" Margin="1" Visibility="{Binding Reply_MessageFileThumbnail_Visibility}" Width="40" Height="auto" Source="{Binding Reply_MessageFileThumbnail}" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                        <!--#region Sticker Message-->
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal"  Margin="0,5,0,0">
+
+                            <Grid>
+                                <Border CornerRadius="10" Width="90" Height="90" >
+                                    <Border.Background>
+                                        <ImageBrush Stretch="Fill" ImageSource="{Binding Media}"/>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+        <!-- VideoDataTemplate -->
+        <DataTemplate x:Key="VideoDataTemplate">
+            <Border Padding="5" SnapsToDevicePixels="True" >
+
+                <StackPanel Orientation="Horizontal" Height="Auto" MinHeight="60" MaxWidth="500" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <Ellipse Height="40" Width="40" VerticalAlignment="Top"  Margin="0,10,0,0">
+                        <Ellipse.Fill>
+                            <ImageBrush  x:Name="ImageUser"  ImageSource="{Binding Img_user_message, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImageAvatar}, TargetNullValue={StaticResource DefaultImageAvatar}}"  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<controls1:RoundProfileButton Tap="ImageUser_OnTap" Tag="{Binding Id}"  x:Name="ImageUser" Height="15" Width="15" ProfileImageSource="{Binding Img_user_message}" IsOnlineVisibility="Collapsed" IsOnline="True" StrokeBrush="#2a2e4d" VerticalAlignment="Top"  Margin="0,10,0,0"/>-->
+
+                    <StackPanel Orientation="Vertical"  Margin="10,0,0,0" >
+
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.Triggers>
+
+                                <!-- Mouse over shows time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <!-- Mouse leave hides time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                            </Grid.Triggers>
+
+                            <StackPanel Orientation="Horizontal" >
+                                <!--Name-->
+                                <TextBlock Text="{Binding UserName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Time-->
+                                <TextBlock Text="{Binding TimeText}" Margin="2,0,0,0" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Check-->
+                                <materialDesign:PackIcon Visibility="{Binding SeenVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Check" Foreground="#0288D1" Width="17" Height="17" />
+
+                                <!--Favorite-->
+                                <materialDesign:PackIcon Visibility="{Binding FavoriteVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Star" Foreground="#F9A825" Width="17" Height="17" />
+
+                                <!--Reaction-->
+                                <Image Margin="2,0,0,0"  Source="{Binding ReactionImage}" Visibility="{Binding ReactionVisibility}" Stretch="UniformToFill" Width="20" Height="20">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <!--Menu Message bubble-->
+                                <StackPanel x:Name="MenuMessageStack" Margin="5,0,0,0"  Opacity="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                    <!--Reaction Menu-->
+                                    <materialDesign:PopupBox x:Name="ReactionMenuMessage" Padding="0" PopupMode="Click" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="Smiley" Margin="5" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PopupBox.PopupContent>
+                                            <Border CornerRadius="10" Padding="0" >
+                                                <ListBox MinWidth="100" ItemsSource="{Binding ReactionMessageItems}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="ReactionMenuMessage_OnSelectionChanged">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Image Margin="-3,0,-3,0" ToolTip="{Binding React_Name}" Source="{Binding React_Image}" Stretch="UniformToFill" Width="32" Height="32">
+                                                                <Image.Clip>
+                                                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
+                                                                </Image.Clip>
+                                                            </Image>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                </ListBox>
+                                            </Border>
+                                        </materialDesign:PopupBox.PopupContent>
+                                    </materialDesign:PopupBox>
+
+                                    <!--Menu Message-->
+                                    <materialDesign:PopupBox x:Name="DropDownMenuMessage"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Margin="5"  HorizontalAlignment="Center"  HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="DotsVertical" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <ListBox MinWidth="150" ItemsSource="{Binding MenuMessageItems}"  SelectionMode="Multiple" MouseMove="DropDownMenuMessage_OnMouseMove" SelectionChanged="DropDownMenuMessage_OnSelectionChanged" />
+                                    </materialDesign:PopupBox>
+
+                                </StackPanel>
+
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Forwarded Message -->
+                        <StackPanel  Orientation="Horizontal" Visibility="{Binding Forwarded_Visibility}">
+                            <materialDesign:PackIcon Kind="ShareOutline" Foreground="#888888" Width="15" Height="15" Margin="5"  />
+                            <TextBlock Text="{x:Static properties:LocalResources.label5_Forwarded}" Margin="0,5,0,0"  Foreground="#888888"  HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource RobotoBold}" />
+                        </StackPanel>
+
+                        <!--#region Replay Message-->
+                        <StackPanel HorizontalAlignment="Stretch" >
+
+                            <Border x:Name="ReplyMessagePanel" Visibility="{Binding ReplyPanel_Visibility}" Height="40" Margin="1" VerticalAlignment="Stretch" >
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0"  Width="4" Margin="0" HorizontalAlignment="Right" Background="{StaticResource WownderDefaultBrush}" />
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0"  Orientation="Vertical" VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="TxtOwnerName" Text="{Binding Reply_TxtOwnerName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                            <TextBlock x:Name="TxtMessageType" Text="{Binding Reply_TxtMessageType}" Visibility="{Binding Reply_TxtMessageType_Visibility}" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TxtShortMessage" Text="{Binding Reply_TxtShortMessage}" Visibility="{Binding Reply_TxtShortMessage_Visibility}" Margin="0,3,0,0" Foreground="#888888" Padding="2" />
+
+                                    </StackPanel>
+
+                                    <Image x:Name="MessageFileThumbnail" Grid.Column="2" Margin="1" Visibility="{Binding Reply_MessageFileThumbnail_Visibility}" Width="40" Height="auto" Source="{Binding Reply_MessageFileThumbnail}" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                        <!--#region Video Message-->
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal"  Margin="0,5,0,0">
+
+                            <Grid>
+
+                                <Border CornerRadius="10" Width="200" Height="200">
+                                    <Border.Background>
+                                        <ImageBrush Stretch="Fill" ImageSource="{Binding ImageVideo, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImagePlacholder}, TargetNullValue={StaticResource DefaultImagePlacholder}}"/>
+                                    </Border.Background>
+                                </Border>
+
+                                <Button Grid.Row="0" x:Name="Btn_Play_video"  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                                        HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                        Click="Btn_Play_video_OnClick" CommandParameter="{Binding Id}"
+                                        BorderBrush="{StaticResource WownderDefaultBrush}" ToolTip="{x:Static properties:LocalResources.label_Btn_Play}"
+                                        Background="{StaticResource WownderDefaultBrush}" >
+                                    <materialDesign:PackIcon Margin="5,3,0,0" Kind="Play"  Foreground="#fff"/>
+                                </Button>
+
+                            </Grid>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+        <!-- ContactDataTemplate -->
+        <DataTemplate x:Key="ContactDataTemplate">
+            <Border Padding="5" SnapsToDevicePixels="True" >
+
+                <StackPanel Orientation="Horizontal" Height="Auto" MinHeight="60" MaxWidth="500" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <Ellipse Height="40" Width="40" VerticalAlignment="Top"  Margin="0,10,0,0">
+                        <Ellipse.Fill>
+                            <ImageBrush  x:Name="ImageUser"  ImageSource="{Binding Img_user_message, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImageAvatar}, TargetNullValue={StaticResource DefaultImageAvatar}}"  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<controls1:RoundProfileButton Tap="ImageUser_OnTap" Tag="{Binding Id}"  x:Name="ImageUser" Height="15" Width="15" ProfileImageSource="{Binding Img_user_message}" IsOnlineVisibility="Collapsed" IsOnline="True" StrokeBrush="#2a2e4d" VerticalAlignment="Top"  Margin="0,10,0,0"/>-->
+
+                    <StackPanel Orientation="Vertical"  Margin="10,0,0,0" >
+
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.Triggers>
+
+                                <!-- Mouse over shows time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <!-- Mouse leave hides time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                            </Grid.Triggers>
+
+                            <StackPanel Orientation="Horizontal" >
+                                <!--Name-->
+                                <TextBlock Text="{Binding UserName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Time-->
+                                <TextBlock Text="{Binding TimeText}" Margin="2,0,0,0" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Check-->
+                                <materialDesign:PackIcon Visibility="{Binding SeenVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Check" Foreground="#0288D1" Width="17" Height="17" />
+
+                                <!--Favorite-->
+                                <materialDesign:PackIcon Visibility="{Binding FavoriteVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Star" Foreground="#F9A825" Width="17" Height="17" />
+
+                                <!--Reaction-->
+                                <Image Margin="2,0,0,0"  Source="{Binding ReactionImage}" Visibility="{Binding ReactionVisibility}" Stretch="UniformToFill" Width="20" Height="20">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <!--Menu Message bubble-->
+                                <StackPanel x:Name="MenuMessageStack" Margin="5,0,0,0"  Opacity="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                    <!--Reaction Menu-->
+                                    <materialDesign:PopupBox x:Name="ReactionMenuMessage" Padding="0" PopupMode="Click" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="Smiley" Margin="5" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PopupBox.PopupContent>
+                                            <Border CornerRadius="10" Padding="0" >
+                                                <ListBox MinWidth="100" ItemsSource="{Binding ReactionMessageItems}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="ReactionMenuMessage_OnSelectionChanged">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Image Margin="-3,0,-3,0" ToolTip="{Binding React_Name}" Source="{Binding React_Image}" Stretch="UniformToFill" Width="32" Height="32">
+                                                                <Image.Clip>
+                                                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
+                                                                </Image.Clip>
+                                                            </Image>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                </ListBox>
+                                            </Border>
+                                        </materialDesign:PopupBox.PopupContent>
+                                    </materialDesign:PopupBox>
+
+                                    <!--Menu Message-->
+                                    <materialDesign:PopupBox x:Name="DropDownMenuMessage"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Margin="5"  HorizontalAlignment="Center"  HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="DotsVertical" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <ListBox MinWidth="150" ItemsSource="{Binding MenuMessageItems}"  SelectionMode="Multiple" MouseMove="DropDownMenuMessage_OnMouseMove" SelectionChanged="DropDownMenuMessage_OnSelectionChanged" />
+                                    </materialDesign:PopupBox>
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                        <!-- Forwarded Message -->
+                        <StackPanel  Orientation="Horizontal" Visibility="{Binding Forwarded_Visibility}">
+                            <materialDesign:PackIcon Kind="ShareOutline" Foreground="#888888" Width="15" Height="15" Margin="5"  />
+                            <TextBlock Text="{x:Static properties:LocalResources.label5_Forwarded}" Margin="0,5,0,0"  Foreground="#888888"  HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource RobotoBold}" />
+                        </StackPanel>
+
+                        <!--#region Replay Message-->
+                        <StackPanel HorizontalAlignment="Stretch" >
+
+                            <Border x:Name="ReplyMessagePanel" Visibility="{Binding ReplyPanel_Visibility}" Height="40" Margin="1" VerticalAlignment="Stretch" >
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0"  Width="4" Margin="0" HorizontalAlignment="Right" Background="{StaticResource WownderDefaultBrush}" />
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0"  Orientation="Vertical" VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="TxtOwnerName" Text="{Binding Reply_TxtOwnerName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                            <TextBlock x:Name="TxtMessageType" Text="{Binding Reply_TxtMessageType}" Visibility="{Binding Reply_TxtMessageType_Visibility}" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TxtShortMessage" Text="{Binding Reply_TxtShortMessage}" Visibility="{Binding Reply_TxtShortMessage_Visibility}" Margin="0,3,0,0" Foreground="#888888" Padding="2" />
+
+                                    </StackPanel>
+
+                                    <Image x:Name="MessageFileThumbnail" Grid.Column="2" Margin="1" Visibility="{Binding Reply_MessageFileThumbnail_Visibility}" Width="40" Height="auto" Source="{Binding Reply_MessageFileThumbnail}" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                        <!--#region Contact Message-->
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,5,0,0">
+
+                            <!-- Image -->
+                            <Border x:Name="Border_Contact" HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" Width="40" Height="40" Margin="5"
+                                    ToolTip="Contact" CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                    BorderBrush="{StaticResource WownderDefaultBrush}"
+                                    Background="{StaticResource WownderDefaultBrush}"  >
+                                <materialDesign:PackIcon Margin="5,3,0,0" Kind="ContactMail" Foreground="#fff" Width="23" Height="23" HorizontalAlignment="Center" VerticalAlignment="Center"   />
+                            </Border>
+
+                            <!-- Message text -->
+                            <RichTextBox x:Name="RichTextBox1" FontFamily="{StaticResource RobotoRegular}"
+                                         Foreground="Black" BorderBrush="White" IsReadOnly="True"
+                                         HorizontalAlignment="Left"  VerticalAlignment="Center"
+                                         IsDocumentEnabled="True"  controls:RtbNavigationService.Content="{Binding Text}" />
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+        <!--FileDataTemplate-->
+        <DataTemplate x:Key="FileDataTemplate">
+            <Border Padding="5" SnapsToDevicePixels="True" >
+
+                <StackPanel Orientation="Horizontal" Height="Auto" MinHeight="60" MaxWidth="500" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <Ellipse Height="40" Width="40" VerticalAlignment="Top"  Margin="0,10,0,0">
+                        <Ellipse.Fill>
+                            <ImageBrush  x:Name="ImageUser"  ImageSource="{Binding Img_user_message, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImageAvatar}, TargetNullValue={StaticResource DefaultImageAvatar}}"  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<controls1:RoundProfileButton Tap="ImageUser_OnTap" Tag="{Binding Id}"  x:Name="ImageUser" Height="15" Width="15" ProfileImageSource="{Binding Img_user_message}" IsOnlineVisibility="Collapsed" IsOnline="True" StrokeBrush="#2a2e4d" VerticalAlignment="Top"  Margin="0,10,0,0"/>-->
+
+                    <StackPanel Orientation="Vertical"  Margin="10,0,0,0" >
+
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.Triggers>
+
+                                <!-- Mouse over shows time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <!-- Mouse leave hides time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                            </Grid.Triggers>
+
+                            <StackPanel Orientation="Horizontal" >
+                                <!--Name-->
+                                <TextBlock Text="{Binding UserName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Time-->
+                                <TextBlock Text="{Binding TimeText}" Margin="2,0,0,0" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Check-->
+                                <materialDesign:PackIcon Visibility="{Binding SeenVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Check" Foreground="#0288D1" Width="17" Height="17" />
+
+                                <!--Favorite-->
+                                <materialDesign:PackIcon Visibility="{Binding FavoriteVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Star" Foreground="#F9A825" Width="17" Height="17" />
+
+                                <!--Reaction-->
+                                <Image Margin="2,0,0,0"  Source="{Binding ReactionImage}" Visibility="{Binding ReactionVisibility}" Stretch="UniformToFill" Width="20" Height="20">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <!--Menu Message bubble-->
+                                <StackPanel x:Name="MenuMessageStack" Margin="5,0,0,0"  Opacity="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                    <!--Reaction Menu-->
+                                    <materialDesign:PopupBox x:Name="ReactionMenuMessage" Padding="0" PopupMode="Click" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="Smiley" Margin="5" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PopupBox.PopupContent>
+                                            <Border CornerRadius="10" Padding="0" >
+                                                <ListBox MinWidth="100" ItemsSource="{Binding ReactionMessageItems}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="ReactionMenuMessage_OnSelectionChanged">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Image Margin="-3,0,-3,0" ToolTip="{Binding React_Name}" Source="{Binding React_Image}" Stretch="UniformToFill" Width="32" Height="32">
+                                                                <Image.Clip>
+                                                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
+                                                                </Image.Clip>
+                                                            </Image>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                </ListBox>
+                                            </Border>
+                                        </materialDesign:PopupBox.PopupContent>
+                                    </materialDesign:PopupBox>
+
+                                    <!--Menu Message-->
+                                    <materialDesign:PopupBox x:Name="DropDownMenuMessage"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Margin="5"  HorizontalAlignment="Center"  HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="DotsVertical" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <ListBox MinWidth="150" ItemsSource="{Binding MenuMessageItems}"  SelectionMode="Multiple" MouseMove="DropDownMenuMessage_OnMouseMove" SelectionChanged="DropDownMenuMessage_OnSelectionChanged" />
+                                    </materialDesign:PopupBox>
+
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Grid>
+
+                        <!-- Forwarded Message -->
+                        <StackPanel  Orientation="Horizontal" Visibility="{Binding Forwarded_Visibility}">
+                            <materialDesign:PackIcon Kind="ShareOutline" Foreground="#888888" Width="15" Height="15" Margin="5"  />
+                            <TextBlock Text="{x:Static properties:LocalResources.label5_Forwarded}" Margin="0,5,0,0"  Foreground="#888888"  HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource RobotoBold}" />
+                        </StackPanel>
+
+                        <!--#region Replay Message-->
+                        <StackPanel HorizontalAlignment="Stretch" >
+
+                            <Border x:Name="ReplyMessagePanel" Visibility="{Binding ReplyPanel_Visibility}" Height="40" Margin="1" VerticalAlignment="Stretch" >
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0"  Width="4" Margin="0" HorizontalAlignment="Right" Background="{StaticResource WownderDefaultBrush}" />
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0"  Orientation="Vertical" VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="TxtOwnerName" Text="{Binding Reply_TxtOwnerName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                            <TextBlock x:Name="TxtMessageType" Text="{Binding Reply_TxtMessageType}" Visibility="{Binding Reply_TxtMessageType_Visibility}" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TxtShortMessage" Text="{Binding Reply_TxtShortMessage}" Visibility="{Binding Reply_TxtShortMessage_Visibility}" Margin="0,3,0,0" Foreground="#888888" Padding="2" />
+
+                                    </StackPanel>
+
+                                    <Image x:Name="MessageFileThumbnail" Grid.Column="2" Margin="1" Visibility="{Binding Reply_MessageFileThumbnail_Visibility}" Width="40" Height="auto" Source="{Binding Reply_MessageFileThumbnail}" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                        <!--#region File Message-->
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal"  Margin="0,5,0,0">
+
+                            <Image Margin="4,5,0,0" Source="{Binding Type_Icon_File}" Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <StackPanel Orientation="Vertical" Margin="1,6,0,0">
+
+                                <!--Name-->
+                                <TextBlock Text="{Binding MediaFileName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Size-->
+                                <TextBlock Text="{Binding FileSize}" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+
+                                <Button  Margin="3,0,0,0" HorizontalAlignment="Right" x:Name="HyperlinkDownload"
+                                         Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                         VerticalAlignment="Top" Width="34" Height="34"
+                                         RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Download}"
+                                         BorderBrush="Transparent"
+                                         Background="Transparent" 
+                                         Click="HyperlinkDownload_OnClick" CommandParameter="{Binding Id}"
+                                         Visibility="{Binding Hlink_Download_Visibility}" >
+                                    <materialDesign:PackIcon  Margin="5,3,0,0" Kind="CloudDownloadOutline" Foreground="{StaticResource WownderDefaultBrush}" Width="23" Height="23" />
+                                </Button>
+
+                                <Button  Margin="3,0,0,0" HorizontalAlignment="Right" x:Name="HyperlinkOpen"
+                                         Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                         VerticalAlignment="Top" Width="34" Height="34"
+                                         RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Open_File}"
+                                         BorderBrush="Transparent"
+                                         Background="Transparent" 
+                                         Click="HyperlinkOpen_OnClick" CommandParameter="{Binding Id}"
+                                         Visibility="{Binding Hlink_Open_Visibility}"  >
+                                    <materialDesign:PackIcon  Margin="5,3,0,0" Kind="OpenInNew" Foreground="{StaticResource WownderDefaultBrush}" Width="18" Height="18" />
+                                </Button>
+
+                            </StackPanel>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+        <!--GifsDataTemplate-->
+        <DataTemplate x:Key="GifsDataTemplate">
+            <Border Padding="5" SnapsToDevicePixels="True" >
+
+                <StackPanel Orientation="Horizontal" Height="Auto" MinHeight="60" MaxWidth="500" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <Ellipse Height="40" Width="40" VerticalAlignment="Top"  Margin="0,10,0,0">
+                        <Ellipse.Fill>
+                            <ImageBrush  x:Name="ImageUser"  ImageSource="{Binding Img_user_message, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImageAvatar}, TargetNullValue={StaticResource DefaultImageAvatar}}"  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<controls1:RoundProfileButton Tap="ImageUser_OnTap" Tag="{Binding Id}"  x:Name="ImageUser" Height="15" Width="15" ProfileImageSource="{Binding Img_user_message}" IsOnlineVisibility="Collapsed" IsOnline="True" StrokeBrush="#2a2e4d" VerticalAlignment="Top"  Margin="0,10,0,0"/>-->
+
+                    <StackPanel Orientation="Vertical"  Margin="10,0,0,0" >
+
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.Triggers>
+
+                                <!-- Mouse over shows time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <!-- Mouse leave hides time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                            </Grid.Triggers>
+
+                            <StackPanel Orientation="Horizontal" >
+                                <!--Name-->
+                                <TextBlock Text="{Binding UserName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Time-->
+                                <TextBlock Text="{Binding TimeText}" Margin="2,0,0,0" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Check-->
+                                <materialDesign:PackIcon Visibility="{Binding SeenVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Check" Foreground="#0288D1" Width="17" Height="17" />
+
+                                <!--Favorite-->
+                                <materialDesign:PackIcon Visibility="{Binding FavoriteVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Star" Foreground="#F9A825" Width="17" Height="17" />
+
+                                <!--Reaction-->
+                                <Image Margin="2,0,0,0"  Source="{Binding ReactionImage}" Visibility="{Binding ReactionVisibility}" Stretch="UniformToFill" Width="20" Height="20">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <!--Menu Message bubble-->
+                                <StackPanel x:Name="MenuMessageStack" Margin="5,0,0,0"  Opacity="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                    <!--Reaction Menu-->
+                                    <materialDesign:PopupBox x:Name="ReactionMenuMessage" Padding="0" PopupMode="Click" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="Smiley" Margin="5" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PopupBox.PopupContent>
+                                            <Border CornerRadius="10" Padding="0" >
+                                                <ListBox MinWidth="100" ItemsSource="{Binding ReactionMessageItems}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="ReactionMenuMessage_OnSelectionChanged">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Image Margin="-3,0,-3,0" ToolTip="{Binding React_Name}" Source="{Binding React_Image}" Stretch="UniformToFill" Width="32" Height="32">
+                                                                <Image.Clip>
+                                                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
+                                                                </Image.Clip>
+                                                            </Image>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                </ListBox>
+                                            </Border>
+                                        </materialDesign:PopupBox.PopupContent>
+                                    </materialDesign:PopupBox>
+
+                                    <!--Menu Message-->
+                                    <materialDesign:PopupBox x:Name="DropDownMenuMessage"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Margin="5"  HorizontalAlignment="Center"  HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="DotsVertical" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <ListBox MinWidth="150" ItemsSource="{Binding MenuMessageItems}"  SelectionMode="Multiple" MouseMove="DropDownMenuMessage_OnMouseMove" SelectionChanged="DropDownMenuMessage_OnSelectionChanged" />
+                                    </materialDesign:PopupBox>
+
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Grid>
+
+                        <!-- Forwarded Message -->
+                        <StackPanel  Orientation="Horizontal" Visibility="{Binding Forwarded_Visibility}">
+                            <materialDesign:PackIcon Kind="ShareOutline" Foreground="#888888" Width="15" Height="15" Margin="5"  />
+                            <TextBlock Text="{x:Static properties:LocalResources.label5_Forwarded}" Margin="0,5,0,0"  Foreground="#888888"  HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource RobotoBold}" />
+                        </StackPanel>
+
+                        <!--#region Replay Message-->
+                        <StackPanel HorizontalAlignment="Stretch" >
+
+                            <Border x:Name="ReplyMessagePanel" Visibility="{Binding ReplyPanel_Visibility}" Height="40" Margin="1" VerticalAlignment="Stretch" >
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0"  Width="4" Margin="0" HorizontalAlignment="Right" Background="{StaticResource WownderDefaultBrush}" />
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0"  Orientation="Vertical" VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="TxtOwnerName" Text="{Binding Reply_TxtOwnerName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                            <TextBlock x:Name="TxtMessageType" Text="{Binding Reply_TxtMessageType}" Visibility="{Binding Reply_TxtMessageType_Visibility}" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TxtShortMessage" Text="{Binding Reply_TxtShortMessage}" Visibility="{Binding Reply_TxtShortMessage_Visibility}" Margin="0,3,0,0" Foreground="#888888" Padding="2" />
+
+                                    </StackPanel>
+
+                                    <Image x:Name="MessageFileThumbnail" Grid.Column="2" Margin="1" Visibility="{Binding Reply_MessageFileThumbnail_Visibility}" Width="40" Height="auto" Source="{Binding Reply_MessageFileThumbnail}" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                        <!--#region Image Gif Message-->
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal"  Margin="0,5,0,0">
+
+                            <!-- Image Gifs -->
+                            <Image x:Name="Gifs_Media" Source="{StaticResource DefaultImagePlacholder}" gif:ImageBehavior.AnimatedSource="{Binding Media, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImagePlacholder}, TargetNullValue={StaticResource DefaultImagePlacholder}}"
+                                   Width="150" Height="150" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill"
+                                   gif:ImageBehavior.AnimateInDesignMode="True"
+                                   MouseEnter="UIElement_OnMouseEnter"
+                                   MouseLeave="UIElement_OnMouseLeave" />
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+        <!-- ProductsDataTemplate -->
+        <DataTemplate x:Key="ProductsDataTemplate">
+            <Border Padding="5" SnapsToDevicePixels="True" >
+
+                <StackPanel Orientation="Horizontal" Height="Auto" MinHeight="60" MaxWidth="500" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <Ellipse Height="40" Width="40" VerticalAlignment="Top"  Margin="0,10,0,0" >
+                        <Ellipse.Fill>
+                            <ImageBrush  x:Name="ImageUser"  ImageSource="{Binding Img_user_message, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImageAvatar}, TargetNullValue={StaticResource DefaultImageAvatar}}"  Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <!--<controls1:RoundProfileButton Tap="ImageUser_OnTap" Tag="{Binding Id}"  x:Name="ImageUser" Height="15" Width="15" ProfileImageSource="{Binding Img_user_message}" IsOnlineVisibility="Collapsed" IsOnline="True" StrokeBrush="#2a2e4d" VerticalAlignment="Top"  Margin="0,10,0,0"/>-->
+
+                    <StackPanel Orientation="Vertical"  Margin="10,0,0,0" >
+
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="{x:Type Grid}">
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                </Style>
+                            </Grid.Style>
+
+                            <Grid.Triggers>
+
+                                <!-- Mouse over shows time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseEnter</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="1" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                                <!-- Mouse leave hides time -->
+                                <EventTrigger >
+                                    <EventTrigger.RoutedEvent>MouseLeave</EventTrigger.RoutedEvent>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetName="MenuMessageStack" Storyboard.TargetProperty="Opacity">
+                                            <DoubleAnimation To="0" Duration="00:00:00.1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+
+                                </EventTrigger>
+
+                            </Grid.Triggers>
+
+                            <StackPanel Orientation="Horizontal" >
+                                <!--Name-->
+                                <TextBlock Text="{Binding UserName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" FontSize="15" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Time-->
+                                <TextBlock Text="{Binding TimeText}" Margin="2,0,0,0" FontFamily="{StaticResource RobotoRegular}" FontWeight="Regular" Foreground="#888888" FontSize="10" Padding="2" VerticalAlignment="Center" />
+
+                                <!--Check-->
+                                <materialDesign:PackIcon Visibility="{Binding SeenVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Check" Foreground="#0288D1" Width="17" Height="17" />
+
+                                <!--Favorite-->
+                                <materialDesign:PackIcon Visibility="{Binding FavoriteVisibility}" Margin="2,0,0,0" Padding="2" VerticalAlignment="Center" Kind="Star" Foreground="#F9A825" Width="17" Height="17" />
+
+                                <!--Reaction-->
+                                <Image Margin="2,0,0,0"  Source="{Binding ReactionImage}" Visibility="{Binding ReactionVisibility}" Stretch="UniformToFill" Width="20" Height="20">
+                                    <Image.Clip>
+                                        <EllipseGeometry Center="10,10" RadiusX="10" RadiusY="10" />
+                                    </Image.Clip>
+                                </Image>
+
+                                <!--Menu Message bubble-->
+                                <StackPanel x:Name="MenuMessageStack" Margin="5,0,0,0"  Opacity="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+
+                                    <!--Reaction Menu-->
+                                    <materialDesign:PopupBox x:Name="ReactionMenuMessage" Padding="0" PopupMode="Click" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Kind="Smiley" Margin="5" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PopupBox.PopupContent>
+                                            <Border CornerRadius="10" Padding="0" >
+                                                <ListBox MinWidth="100" ItemsSource="{Binding ReactionMessageItems}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" SelectionChanged="ReactionMenuMessage_OnSelectionChanged">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Image Margin="-3,0,-3,0" ToolTip="{Binding React_Name}" Source="{Binding React_Image}" Stretch="UniformToFill" Width="32" Height="32">
+                                                                <Image.Clip>
+                                                                    <EllipseGeometry Center="16,16" RadiusX="16" RadiusY="16" />
+                                                                </Image.Clip>
+                                                            </Image>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                </ListBox>
+                                            </Border>
+                                        </materialDesign:PopupBox.PopupContent>
+                                    </materialDesign:PopupBox>
+
+                                    <!--Menu Message-->
+                                    <materialDesign:PopupBox x:Name="DropDownMenuMessage"  materialDesign:ShadowAssist.ShadowDepth="Depth0"  Margin="5"  HorizontalAlignment="Center"  HorizontalContentAlignment="Right" VerticalAlignment="Center" PlacementMode="BottomAndAlignRightEdges">
+                                        <materialDesign:PopupBox.ToggleContent>
+                                            <materialDesign:PackIcon Margin="5,3,0,0" Kind="DotsVertical" Width="21" Height="21" Foreground="#777" />
+                                        </materialDesign:PopupBox.ToggleContent>
+                                        <ListBox MinWidth="150" ItemsSource="{Binding MenuMessageItems}"  SelectionMode="Multiple" MouseMove="DropDownMenuMessage_OnMouseMove" SelectionChanged="DropDownMenuMessage_OnSelectionChanged" />
+                                    </materialDesign:PopupBox>
+
+                                </StackPanel>
+                            </StackPanel>
+
+                        </Grid>
+
+                        <!-- Forwarded Message -->
+                        <StackPanel  Orientation="Horizontal" Visibility="{Binding Forwarded_Visibility}">
+                            <materialDesign:PackIcon Kind="ShareOutline" Foreground="#888888" Width="15" Height="15" Margin="5"  />
+                            <TextBlock Text="{x:Static properties:LocalResources.label5_Forwarded}" Margin="0,5,0,0"  Foreground="#888888"  HorizontalAlignment="Left" FontSize="10" FontFamily="{StaticResource RobotoBold}" />
+                        </StackPanel>
+
+                        <!--#region Replay Message-->
+                        <StackPanel HorizontalAlignment="Stretch" >
+
+                            <Border x:Name="ReplyMessagePanel" Visibility="{Binding ReplyPanel_Visibility}" Height="40" Margin="1" VerticalAlignment="Stretch" >
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="40" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0"  Width="4" Margin="0" HorizontalAlignment="Right" Background="{StaticResource WownderDefaultBrush}" />
+
+                                    <StackPanel Grid.Column="1" Margin="3,0,0,0"  Orientation="Vertical" VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="TxtOwnerName" Text="{Binding Reply_TxtOwnerName}" FontFamily="{StaticResource RobotoBold}" FontWeight="SemiBold" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                            <TextBlock x:Name="TxtMessageType" Text="{Binding Reply_TxtMessageType}" Visibility="{Binding Reply_TxtMessageType_Visibility}" Foreground="{StaticResource WownderDefaultBrush}" Padding="2" />
+                                        </StackPanel>
+
+                                        <TextBlock x:Name="TxtShortMessage" Text="{Binding Reply_TxtShortMessage}" Visibility="{Binding Reply_TxtShortMessage_Visibility}" Margin="0,3,0,0" Foreground="#888888" Padding="2" />
+
+                                    </StackPanel>
+
+                                    <Image x:Name="MessageFileThumbnail" Grid.Column="2" Margin="1" Visibility="{Binding Reply_MessageFileThumbnail_Visibility}" Width="40" Height="auto" Source="{Binding Reply_MessageFileThumbnail}" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                        <!--#region Products Message-->
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal"  Margin="0,5,0,0">
+
+                            <materialDesign:Card Margin="1" Width="200">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="140" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding Media, Converter={StaticResource ImgConverter}, IsAsync=true,FallbackValue={StaticResource DefaultImagePlacholder}, TargetNullValue={StaticResource DefaultImagePlacholder}}"  Height="150" Width="200" Stretch="Uniform" />
+
+                                    <StackPanel Grid.Row="1" Margin="8 24 8 0" >
+                                        <TextBlock FontWeight="SemiBold" Text="{Binding P_Name}"/>
+                                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center"  Margin="0 5 0 5" Text="{Binding P_Category }" />
+                                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding P_PriceWithCurrency }" />
+                                    </StackPanel>
+                                </Grid>
+                            </materialDesign:Card>
+
+                        </StackPanel>
+                        <!--#endregion-->
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+        </DataTemplate>
+
+        <controls:MessageDataTemplate x:Key="Styleofmsg" 
+                                      TextDataTemplate ="{StaticResource TextDataTemplate}"
+                                      ImageDataTemplate="{StaticResource ImageDataTemplate}"
+                                      SoundDataTemplate ="{StaticResource SoundDataTemplate}"
+                                      StickerDataTemplate="{StaticResource StickerDataTemplate}"
+                                      VideoDataTemplate ="{StaticResource VideoDataTemplate}"
+                                      ContactDataTemplate ="{StaticResource ContactDataTemplate}"
+                                      FileDataTemplate="{StaticResource FileDataTemplate}"
+                                      GifsDataTemplate ="{StaticResource GifsDataTemplate}"
+                                      ProductsDataTemplate ="{StaticResource ProductsDataTemplate}"
+        />
+
+    </UserControl.Resources>
+
+    <Grid >
+
+        <Grid.RowDefinitions>
+
+            <!--if you might be thinking why do i set row definitions to Auto in some rows..
+            it is because when we want to show our hide any child element in row. the  row height will be 0 if the child element is hidden such as we are going to place searchbox inside this row and we will hide it when no text is inside..-->
+
+            <!--SearchBox Row-->
+            <RowDefinition Height="Auto"/>
+
+            <!--Conversation Body-->
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--Search Box-->
+        <Border 
+                    Background="#f3f3f3"
+                    CornerRadius="15"
+                    Margin="20"
+                    Height="50"
+                    x:Name="searchBoxBorder"
+                    FocusManager.FocusedElement="{Binding ElementName=searchQuery}">
+            <!--Hide Searchbox when no text-->
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSearchConversationBoxOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=False}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+
+            <!--FocusManager.FocusedElement="{Binding ElementName=searchQuery}"=> to focus our textbox when border gets focused..-->
+            <TextBox
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Name="searchQuery"
+                        Padding="12,0"
+                        materialDesign:HintAssist.Hint="{x:Static properties:LocalResources.label_MSG_searchMessages}"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+                        Text="{Binding SearchConversationText, UpdateSourceTrigger=PropertyChanged}"
+                        VerticalContentAlignment="Center"
+                        VerticalAlignment="Stretch">
+
+                <TextBox.InputBindings>
+                    <!--key Binding to Search on 'Enter' key press-->
+                    <KeyBinding Command="{Binding SearchConversationCommand}" Key="Return"/>
+
+
+                    <!--key Binding to Clear Search text on 'Esc' key press-->
+                    <KeyBinding Command="{Binding ClearConversationSearchCommand}" Key="Esc"/>
+                </TextBox.InputBindings>
+            </TextBox>
+        </Border>
+
+        <!--body-->
+        <!--To-Do: Add attachedproperty to Auto-Scroll to bottom-->
+        <ListBox x:Name="ChatMessgaeslistBox" ItemTemplateSelector="{StaticResource Styleofmsg}" Grid.Row="1" 
+                 Margin="10,0,0,0" VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="False" 
+                 Visibility="Visible"  IsSynchronizedWithCurrentItem="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ItemsSource="{Binding FilteredConversations, UpdateSourceTrigger=PropertyChanged}"
+                 Style="{DynamicResource ListBoxStyle1}" >
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel IsVirtualizing="True" VirtualizationMode="Recycling" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <ContentPresenter/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+  
+    </Grid>
+</UserControl>

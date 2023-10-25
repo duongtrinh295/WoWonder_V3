@@ -1,0 +1,1230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="label2_Night_Mode" xml:space="preserve">
+    <value>Night Mode</value>
+  </data>
+  <data name="label2_No_file_selected" xml:space="preserve">
+    <value>No file selected</value>
+  </data>
+  <data name="label3_about_hour" xml:space="preserve">
+    <value>Hour ago</value>
+  </data>
+  <data name="label3_about_minute" xml:space="preserve">
+    <value>Minute ago</value>
+  </data>
+  <data name="label3_about_month" xml:space="preserve">
+    <value>Month ago.</value>
+  </data>
+  <data name="label3_about_year" xml:space="preserve">
+    <value>Year ago</value>
+  </data>
+  <data name="label3_ActiveAccount" xml:space="preserve">
+    <value>active account</value>
+  </data>
+  <data name="label3_AddCode" xml:space="preserve">
+    <value>Add code number</value>
+  </data>
+  <data name="label3_ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="label3_CodeNotCorrect" xml:space="preserve">
+    <value>Please type the correct code number</value>
+  </data>
+  <data name="label3_CurrentPassword" xml:space="preserve">
+    <value>Current Password</value>
+  </data>
+  <data name="label3_days" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="label3_hours" xml:space="preserve">
+    <value>H</value>
+  </data>
+  <data name="label3_minutes" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="label3_month" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="label3_NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="label3_Please_check_your_details" xml:space="preserve">
+    <value>Please check your details</value>
+  </data>
+  <data name="label3_Please_write_your_Phone" xml:space="preserve">
+    <value>Please write your Phone</value>
+  </data>
+  <data name="label3_seconds" xml:space="preserve">
+    <value>Sec</value>
+  </data>
+  <data name="label3_Verification" xml:space="preserve">
+    <value>Verification</value>
+  </data>
+  <data name="label3_VerificationText1" xml:space="preserve">
+    <value>To log in, you need to verify your identity.</value>
+  </data>
+  <data name="label3_VerificationText2" xml:space="preserve">
+    <value>We have sent you the confirmation code to your email address.</value>
+  </data>
+  <data name="label3_Verify" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="label3_year" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label3_yesterday" xml:space="preserve">
+    <value>Yesterday</value>
+  </data>
+  <data name="label3_Your_password_dont_match" xml:space="preserve">
+    <value>Your password does not match</value>
+  </data>
+  <data name="label5_AddFriends" xml:space="preserve">
+    <value>Add Friends</value>
+  </data>
+  <data name="label5_AllMedia" xml:space="preserve">
+    <value>All Media</value>
+  </data>
+  <data name="label5_Angry" xml:space="preserve">
+    <value>Angry</value>
+  </data>
+  <data name="label5_Archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="label5_Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="label5_AreYouLogout" xml:space="preserve">
+    <value>Are you sure you went to log out?</value>
+  </data>
+  <data name="label5_AreYouSureBlockUser" xml:space="preserve">
+    <value>Are you sure you want to block this user?</value>
+  </data>
+  <data name="label5_AreYouSureDeleteGroup" xml:space="preserve">
+    <value>Are you sure you want to delete the group</value>
+  </data>
+  <data name="label5_AreYouSureDeleteMessages" xml:space="preserve">
+    <value>Are you sure you want to delete messages?</value>
+  </data>
+  <data name="label5_AreYouSureDeleteThisUser" xml:space="preserve">
+    <value>Are you sure you want to delete this user?</value>
+  </data>
+  <data name="label5_AreYouSureExitGroup" xml:space="preserve">
+    <value>Are you sure to exit the group</value>
+  </data>
+  <data name="label5_AreYouSureLogoutFromThisDevice" xml:space="preserve">
+    <value>Are you sure you want to log out from this device?</value>
+  </data>
+  <data name="label5_Are_you_DeleteAccount" xml:space="preserve">
+    <value>Are you sure you want to delete the account from</value>
+  </data>
+  <data name="label5_Audio" xml:space="preserve">
+    <value>Audio</value>
+  </data>
+  <data name="label5_ImageBackground" xml:space="preserve">
+    <value>Image Background</value>
+  </data>
+  <data name="label5_Block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="label5_blockUser_Sub" xml:space="preserve">
+    <value>Review people you previously blocked</value>
+  </data>
+  <data name="label5_Call" xml:space="preserve">
+    <value>Call</value>
+  </data>
+  <data name="label5_Camera" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="label5_ChangePassword_Sub" xml:space="preserve">
+    <value>It's a good idea to use a strong password that you are not using elsewhere</value>
+  </data>
+  <data name="label5_ChangeWallpaper" xml:space="preserve">
+    <value>Change Wallpaper</value>
+  </data>
+  <data name="label5_ChooseFromGallery" xml:space="preserve">
+    <value>Choose from gallery</value>
+  </data>
+  <data name="label5_ClearChat" xml:space="preserve">
+    <value>Clear Chat</value>
+  </data>
+  <data name="label5_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="label5_ConfirmationUnFriend" xml:space="preserve">
+    <value>Are you sure you want to remove this user as your friend?</value>
+  </data>
+  <data name="label5_ConfirmRequest" xml:space="preserve">
+    <value>Confirm request when someone follows you</value>
+  </data>
+  <data name="label5_Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="label5_Conversations" xml:space="preserve">
+    <value>Conversations</value>
+  </data>
+  <data name="label5_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="label5_CreateGroupChat" xml:space="preserve">
+    <value>Create Group Chat</value>
+  </data>
+  <data name="label5_DefaultWallPaper" xml:space="preserve">
+    <value>Default WallPaper</value>
+  </data>
+  <data name="label5_DeleteAccount_Sub" xml:space="preserve">
+    <value>Deleting your account will permanently remove your photos, your profile, and all your progress.</value>
+  </data>
+  <data name="label5_DeleteMessage" xml:space="preserve">
+    <value>Delete Message</value>
+  </data>
+  <data name="label5_Delete_Account" xml:space="preserve">
+    <value>Delete Account</value>
+  </data>
+  <data name="label5_Delivered" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="label5_Docs" xml:space="preserve">
+    <value>Docs</value>
+  </data>
+  <data name="label5_EditProfileAndAvatar" xml:space="preserve">
+    <value>Edit Profile and avatar</value>
+  </data>
+  <data name="label5_EditGroupChat" xml:space="preserve">
+    <value>Edit Group Chat</value>
+  </data>
+  <data name="label5_EditYourProfileInfo" xml:space="preserve">
+    <value>Edit your profile information</value>
+  </data>
+  <data name="label5_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="label5_ErrorLengthGroupName" xml:space="preserve">
+    <value>Group name must be between 4 and 15 character</value>
+  </data>
+  <data name="label5_ErrorSelectedFileExtenstion" xml:space="preserve">
+    <value>The selected file extenstion is forbidden</value>
+  </data>
+  <data name="label5_Error_connectServer" xml:space="preserve">
+    <value>Can't connect with the server</value>
+  </data>
+  <data name="label5_Event" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="label5_Everyone" xml:space="preserve">
+    <value>Everyone</value>
+  </data>
+  <data name="label5_Explore" xml:space="preserve">
+    <value>Explore</value>
+  </data>
+  <data name="label5_Favorite" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="label5_Follow" xml:space="preserve">
+    <value>Follow</value>
+  </data>
+  <data name="label5_Following" xml:space="preserve">
+    <value>Following</value>
+  </data>
+  <data name="label5_Forward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="label5_Forwarded" xml:space="preserve">
+    <value>Forwarded</value>
+  </data>
+  <data name="label5_ForwardMessage" xml:space="preserve">
+    <value>Forward Message</value>
+  </data>
+  <data name="label5_FriendRequests" xml:space="preserve">
+    <value>Friend Requests</value>
+  </data>
+  <data name="label5_Friends" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="label5_Gallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="label5_Gps_is_disabled" xml:space="preserve">
+    <value>GPS is disabled.Do you want to enable GPS</value>
+  </data>
+  <data name="label5_GroupChatProfile" xml:space="preserve">
+    <value>Group Chat Profile</value>
+  </data>
+  <data name="label5_GroupRequests" xml:space="preserve">
+    <value>Group Requests</value>
+  </data>
+  <data name="label5_Groups" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="label5_GroupSuccessfullyDeleted" xml:space="preserve">
+    <value>Group successfully deleted</value>
+  </data>
+  <data name="label5_GroupSuccessfullyLeaved" xml:space="preserve">
+    <value>You are successfully leaved this group</value>
+  </data>
+  <data name="label5_HaHa" xml:space="preserve">
+    <value>HaHa</value>
+  </data>
+  <data name="label5_InfoGroup" xml:space="preserve">
+    <value>Info Group</value>
+  </data>
+  <data name="label5_IWantToDelete1" xml:space="preserve">
+    <value>Yes, I want to delete</value>
+  </data>
+  <data name="label5_IWantToDelete2" xml:space="preserve">
+    <value>permanently from</value>
+  </data>
+  <data name="label5_IWantToDelete3" xml:space="preserve">
+    <value>Account.</value>
+  </data>
+  <data name="label5_Language_Sub" xml:space="preserve">
+    <value>Display your app Language</value>
+  </data>
+  <data name="label5_Like" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="label5_Loading_messages" xml:space="preserve">
+    <value>Loading messages</value>
+  </data>
+  <data name="label5_Love" xml:space="preserve">
+    <value>Love</value>
+  </data>
+  <data name="label5_Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="label5_ManageSessions" xml:space="preserve">
+    <value>Manage Sessions</value>
+  </data>
+  <data name="label5_ManageSessions_Sub" xml:space="preserve">
+    <value>Review a list of devices where you won't have to use a login code</value>
+  </data>
+  <data name="label5_MessageInfo" xml:space="preserve">
+    <value>Message Info</value>
+  </data>
+  <data name="label5_MessagePinned" xml:space="preserve">
+    <value>Message pinned</value>
+  </data>
+  <data name="label5_MessagesSent" xml:space="preserve">
+    <value>Messages sent</value>
+  </data>
+  <data name="label5_MessageUnPinned" xml:space="preserve">
+    <value>Message unpinned</value>
+  </data>
+  <data name="label5_Messenger" xml:space="preserve">
+    <value>Messenger</value>
+  </data>
+  <data name="label5_MsgPopup" xml:space="preserve">
+    <value>Msg Popup</value>
+  </data>
+  <data name="label5_MuteNotification" xml:space="preserve">
+    <value>Mute notification</value>
+  </data>
+  <data name="label5_MyAffiliates" xml:space="preserve">
+    <value>My Affiliates</value>
+  </data>
+  <data name="label5_MyAffiliates_Link" xml:space="preserve">
+    <value>Your affiliate link is</value>
+  </data>
+  <data name="label5_MyProfile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="label5_NearBy" xml:space="preserve">
+    <value>Near By</value>
+  </data>
+  <data name="label5_NewBroadcast" xml:space="preserve">
+    <value>New Broadcast</value>
+  </data>
+  <data name="label5_NoArchive_TitleText" xml:space="preserve">
+    <value>No Archived Chats</value>
+  </data>
+  <data name="label5_NoBlockedUsers_DescriptionText" xml:space="preserve">
+    <value>You have not blocked any users</value>
+  </data>
+  <data name="label5_NoBlockedUsers_TitleText" xml:space="preserve">
+    <value>No Users to show</value>
+  </data>
+  <data name="label5_NoBody" xml:space="preserve">
+    <value>No body</value>
+  </data>
+  <data name="label5_NoCall_DescriptionText" xml:space="preserve">
+    <value>Start a new call from your friends list</value>
+  </data>
+  <data name="label5_NoCall_TitleText" xml:space="preserve">
+    <value>No calls</value>
+  </data>
+  <data name="label5_NoConnection_DescriptionText" xml:space="preserve">
+    <value>We could not establish a connection with our servers please try again later</value>
+  </data>
+  <data name="label5_NoConnection_TitleText" xml:space="preserve">
+    <value>No Internet Available</value>
+  </data>
+  <data name="label5_NoEvent_DescriptionText" xml:space="preserve">
+    <value>There are no events to view</value>
+  </data>
+  <data name="label5_NoEvent_TitleText" xml:space="preserve">
+    <value>No events</value>
+  </data>
+  <data name="label5_NoFollow_DescriptionText" xml:space="preserve">
+    <value>You don't have friends to follow</value>
+  </data>
+  <data name="label5_NoFollow_TitleText" xml:space="preserve">
+    <value>No Users Yet</value>
+  </data>
+  <data name="label5_NoFriendRequests_TitleText" xml:space="preserve">
+    <value>You do not have any requests</value>
+  </data>
+  <data name="label5_NoGroupChat_DescriptionText" xml:space="preserve">
+    <value>Start adding new groups</value>
+  </data>
+  <data name="label5_NoGroupChat_TitleText" xml:space="preserve">
+    <value>There are no groups</value>
+  </data>
+  <data name="label5_NoGroupRequest_TitleText" xml:space="preserve">
+    <value>There are no invites to join the chat group</value>
+  </data>
+  <data name="label5_NoImages" xml:space="preserve">
+    <value>No Images</value>
+  </data>
+  <data name="label5_NoMedia" xml:space="preserve">
+    <value>No Media</value>
+  </data>
+  <data name="label5_NoMessages_DescriptionText" xml:space="preserve">
+    <value>Start new conversations by going to &gt;&gt; Contacts</value>
+  </data>
+  <data name="label5_NoMessages_TitleText" xml:space="preserve">
+    <value>No more messages</value>
+  </data>
+  <data name="label5_NoNearBy_TitleText" xml:space="preserve">
+    <value>Oops it seems no one is near you</value>
+  </data>
+  <data name="label5_NoPageChat_TitleText" xml:space="preserve">
+    <value>There are no pages</value>
+  </data>
+  <data name="label5_NoPinnedMessages_TitleText" xml:space="preserve">
+    <value>No Pinned Message</value>
+  </data>
+  <data name="label5_NoSearchResult_DescriptionText" xml:space="preserve">
+    <value>We cannot find the keyword you are searching form maybe a little spelling mistake</value>
+  </data>
+  <data name="label5_NoSearchResult_TitleText" xml:space="preserve">
+    <value>Sad no result</value>
+  </data>
+  <data name="label5_NoSessions_TitleText" xml:space="preserve">
+    <value>No sessions</value>
+  </data>
+  <data name="label5_NoStartedMessages_TitleText" xml:space="preserve">
+    <value>No Favorited Messages</value>
+  </data>
+  <data name="label5_NotificationPopup" xml:space="preserve">
+    <value>Notification Popup</value>
+  </data>
+  <data name="label5_NotificationPopup_Sub" xml:space="preserve">
+    <value>Get notifications when you receive messages</value>
+  </data>
+  <data name="label5_NotificationsControl" xml:space="preserve">
+    <value>Notifications Control</value>
+  </data>
+  <data name="label5_NoUsers_DescriptionText" xml:space="preserve">
+    <value>Welcome, you are the first user here</value>
+  </data>
+  <data name="label5_NoUsers_TitleText" xml:space="preserve">
+    <value>No Users to show</value>
+  </data>
+  <data name="label5_Participant" xml:space="preserve">
+    <value>Participant</value>
+  </data>
+  <data name="label5_PeopleIFollow" xml:space="preserve">
+    <value>People i Follow</value>
+  </data>
+  <data name="label5_PersonalInformation" xml:space="preserve">
+    <value>Personal information</value>
+  </data>
+  <data name="label5_PhoneNumberIsWrong" xml:space="preserve">
+    <value>Error, Phone number is wrong</value>
+  </data>
+  <data name="label5_Pin" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="label5_PinnedMessages" xml:space="preserve">
+    <value>Pinned Messages</value>
+  </data>
+  <data name="label5_PlaySound_Sub" xml:space="preserve">
+    <value>Play sounds for incoming and outgoing messages</value>
+  </data>
+  <data name="label5_PleaseEnterName" xml:space="preserve">
+    <value>Error, Please enter name</value>
+  </data>
+  <data name="label5_PleaseEnterWebsite" xml:space="preserve">
+    <value>Error, Please Enter Website</value>
+  </data>
+  <data name="label5_PleaseEnterYourData" xml:space="preserve">
+    <value>Please enter your data</value>
+  </data>
+  <data name="label5_PleaseSelectImage" xml:space="preserve">
+    <value>Error, Please select Image</value>
+  </data>
+  <data name="label5_Please_confirm_your_password" xml:space="preserve">
+    <value>Error, Please confirm your password</value>
+  </data>
+  <data name="label5_Privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="label5_PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="label5_Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="label5_Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="label5_RecieveCall" xml:space="preserve">
+    <value>Receive Call</value>
+  </data>
+  <data name="label5_Recording" xml:space="preserve">
+    <value>Recording</value>
+  </data>
+  <data name="label5_Relationship" xml:space="preserve">
+    <value>Relationship</value>
+  </data>
+  <data name="label5_Reply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="label5_Request" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="label5_Sad" xml:space="preserve">
+    <value>Sad</value>
+  </data>
+  <data name="label5_Security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="label5_SeeAll" xml:space="preserve">
+    <value>See All</value>
+  </data>
+  <data name="label5_SelectMembers" xml:space="preserve">
+    <value>Select Members</value>
+  </data>
+  <data name="label5_SendVideoCall" xml:space="preserve">
+    <value>Send Video Call</value>
+  </data>
+  <data name="label5_Send_you_an_contact" xml:space="preserve">
+    <value>Send you an contact</value>
+  </data>
+  <data name="label5_Send_you_an_location" xml:space="preserve">
+    <value>Send you an location</value>
+  </data>
+  <data name="label5_SettingStickers" xml:space="preserve">
+    <value>Setting Stickers</value>
+  </data>
+  <data name="label5_SharedFiles" xml:space="preserve">
+    <value>Shared Files</value>
+  </data>
+  <data name="label5_SocialLogin" xml:space="preserve">
+    <value>Social Login</value>
+  </data>
+  <data name="label5_StartChatting" xml:space="preserve">
+    <value>Start Chatting</value>
+  </data>
+  <data name="label5_StartedMessages" xml:space="preserve">
+    <value>Started Messages</value>
+  </data>
+  <data name="label5_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="label5_Sticker" xml:space="preserve">
+    <value>Sticker</value>
+  </data>
+  <data name="label5_StickersAndEmojis" xml:space="preserve">
+    <value>Stickers and Emojis</value>
+  </data>
+  <data name="label5_StorageSettings" xml:space="preserve">
+    <value>Storage Settings</value>
+  </data>
+  <data name="label5_Story" xml:space="preserve">
+    <value>Story</value>
+  </data>
+  <data name="label5_Study" xml:space="preserve">
+    <value>Study</value>
+  </data>
+  <data name="label5_Themes" xml:space="preserve">
+    <value>Themes</value>
+  </data>
+  <data name="label5_TheWebsiteFormatNotCorrect" xml:space="preserve">
+    <value>The Website format is not correct</value>
+  </data>
+  <data name="label5_ThisFileDownload" xml:space="preserve">
+    <value>This file is download the main time</value>
+  </data>
+  <data name="label5_ThisUserNotActive" xml:space="preserve">
+    <value>This user not activated, please check your email</value>
+  </data>
+  <data name="label5_TwoFactorsAuthentication" xml:space="preserve">
+    <value>Two-Factors Authentication</value>
+  </data>
+  <data name="label5_TwoFactorsAuthentication_Sub" xml:space="preserve">
+    <value>We will ask for a login code if we give an attempted login from an unrecognized device or browser</value>
+  </data>
+  <data name="label5_TwoFactor_Description" xml:space="preserve">
+    <value>Turn on 2-step login to level-up your account&amp;apos;s security, Once turned on, you&amp;apos;ll use both your password and a 6-digit security code sent to your phone or email to log in.</value>
+  </data>
+  <data name="label5_UnArchive" xml:space="preserve">
+    <value>UnArchive</value>
+  </data>
+  <data name="label5_UnBlock" xml:space="preserve">
+    <value>UnBlock</value>
+  </data>
+  <data name="label5_UnFavorite" xml:space="preserve">
+    <value>UnFavorite</value>
+  </data>
+  <data name="label5_UnMuteNotification" xml:space="preserve">
+    <value>Unmute notification</value>
+  </data>
+  <data name="label5_UnPin" xml:space="preserve">
+    <value>UnPin</value>
+  </data>
+  <data name="label5_UpdateProfile_Sub" xml:space="preserve">
+    <value>Update your name and contact information connected to your account</value>
+  </data>
+  <data name="label5_UserNotFound" xml:space="preserve">
+    <value>User not found</value>
+  </data>
+  <data name="label5_UserProfileInformation" xml:space="preserve">
+    <value>User Profile Information</value>
+  </data>
+  <data name="label5_UsersBlocked" xml:space="preserve">
+    <value>Users Blocked</value>
+  </data>
+  <data name="label5_Use_Location" xml:space="preserve">
+    <value>Use Location?</value>
+  </data>
+  <data name="label5_VideoPlayer" xml:space="preserve">
+    <value>Video Player</value>
+  </data>
+  <data name="label5_Wallpaper" xml:space="preserve">
+    <value>Wallpaper</value>
+  </data>
+  <data name="label5_Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="label5_Welcome_Sub" xml:space="preserve">
+    <value>Change the background color of the conversation</value>
+  </data>
+  <data name="label5_WhoCanFollowMe" xml:space="preserve">
+    <value>Who can follow me?</value>
+  </data>
+  <data name="label5_WhoCanSeeMyBirthday" xml:space="preserve">
+    <value>Who can see my birthday?</value>
+  </data>
+  <data name="label5_Work" xml:space="preserve">
+    <value>Work</value>
+  </data>
+  <data name="label5_Wow" xml:space="preserve">
+    <value>Wow</value>
+  </data>
+  <data name="label5_YourSocialMediaProfiles" xml:space="preserve">
+    <value>Your Social media profiles</value>
+  </data>
+  <data name="label5_Your_account_was_successfully_deleted" xml:space="preserve">
+    <value>Your account was successfully deleted</value>
+  </data>
+  <data name="label5_You_can_not_access_your_disapproval" xml:space="preserve">
+    <value>You can not access your disapproval of the Terms and Conditions</value>
+  </data>
+  <data name="label_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="label_Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="label_Background" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="label_blocked" xml:space="preserve">
+    <value>blocked contacts will no longer be able to call you or send you messages.</value>
+  </data>
+  <data name="label_BoxItem_female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="label_btnRpeat" xml:space="preserve">
+    <value>Repeat</value>
+  </data>
+  <data name="label_Btn_Block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="label_Btn_Block_User" xml:space="preserve">
+    <value>Block User</value>
+  </data>
+  <data name="label_Btn_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="label5_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="label_btn_delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="label_Btn_delete_call" xml:space="preserve">
+    <value>Delete call</value>
+  </data>
+  <data name="label_Btn_delete_chat" xml:space="preserve">
+    <value>Delete Chat</value>
+  </data>
+  <data name="label_Btn_Forgot" xml:space="preserve">
+    <value>Forgot Password?</value>
+  </data>
+  <data name="label_Btn_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="label_Btn_newAcount" xml:space="preserve">
+    <value>New Here? Create New Account</value>
+  </data>
+  <data name="label_Btn_Open_img" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="label_Btn_Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="label_Btn_Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="label5_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="label_Calling" xml:space="preserve">
+    <value>Calling</value>
+  </data>
+  <data name="label_Call_your_friends" xml:space="preserve">
+    <value>Call your friends and have a nice audio conversation.</value>
+  </data>
+  <data name="label_ChangeColorButton" xml:space="preserve">
+    <value>Change Color</value>
+  </data>
+  <data name="label_Changed_his_chat_color" xml:space="preserve">
+    <value>Changed his chat color</value>
+  </data>
+  <data name="label_Change_language" xml:space="preserve">
+    <value>Change language</value>
+  </data>
+  <data name="label_Chk_Desktop_Notifications" xml:space="preserve">
+    <value>Desktop notifications</value>
+  </data>
+  <data name="label_Chk_Enable_Sound_notifications" xml:space="preserve">
+    <value>Enable Sound notifications</value>
+  </data>
+  <data name="label_Chk_Play_sound" xml:space="preserve">
+    <value>Play sound</value>
+  </data>
+  <data name="label_Chk_Receive_notifications" xml:space="preserve">
+    <value>Receive notifications for new messages</value>
+  </data>
+  <data name="label_Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="label_connection" xml:space="preserve">
+    <value>It may take few minutes it depends on your connection</value>
+  </data>
+  <data name="label_Control_your_Notifications" xml:space="preserve">
+    <value>Control your Notifications With.</value>
+  </data>
+  <data name="label_Conversation" xml:space="preserve">
+    <value>Conversation</value>
+  </data>
+  <data name="label_Conversation_Notifications" xml:space="preserve">
+    <value>Conversation Notifications</value>
+  </data>
+  <data name="label_cuont_file" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="label_cuont_images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="label_cuont_sounds" xml:space="preserve">
+    <value>Sounds</value>
+  </data>
+  <data name="label_cuont_video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="label_D" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="label_Decline" xml:space="preserve">
+    <value>Decline</value>
+  </data>
+  <data name="label_Declined_your_call" xml:space="preserve">
+    <value>Declined your call</value>
+  </data>
+  <data name="label_Delete_conversation_ListBoxItem" xml:space="preserve">
+    <value>Delete conversation</value>
+  </data>
+  <data name="label_Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="label_Emoji_Icons" xml:space="preserve">
+    <value>Emoji Icons</value>
+  </data>
+  <data name="label_Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="label_End_Video_Call" xml:space="preserve">
+    <value>End Video Call</value>
+  </data>
+  <data name="label_Error_Api_Id" xml:space="preserve">
+    <value>Error Api Id is wrong Or Appliction is not verified</value>
+  </data>
+  <data name="label_Error_found" xml:space="preserve">
+    <value>Error found, please try again later</value>
+  </data>
+  <data name="label_Everyone_in_this_conversation" xml:space="preserve">
+    <value>Everyone in this conversation will see this.</value>
+  </data>
+  <data name="label_Full_Screen_Compress" xml:space="preserve">
+    <value>Full-Screen Compress</value>
+  </data>
+  <data name="label_Full_Screen_Expand" xml:space="preserve">
+    <value>Full-Screen Expand</value>
+  </data>
+  <data name="label_gift" xml:space="preserve">
+    <value>gift</value>
+  </data>
+  <data name="label_GoogleButton" xml:space="preserve">
+    <value>Google</value>
+  </data>
+  <data name="label_H" xml:space="preserve">
+    <value>H</value>
+  </data>
+  <data name="label_is_calling_you" xml:space="preserve">
+    <value>is calling you</value>
+  </data>
+  <data name="label_Item_Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="label_Item_Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="label_Item_Media" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="label_Item_My_Stickers" xml:space="preserve">
+    <value>My Stickers</value>
+  </data>
+  <data name="label_Item_Trending" xml:space="preserve">
+    <value>Trending</value>
+  </data>
+  <data name="label_Keep_me" xml:space="preserve">
+    <value>Keep me sign in</value>
+  </data>
+  <data name="label_last_seen" xml:space="preserve">
+    <value>Last seen</value>
+  </data>
+  <data name="label_Lbl_Orvia" xml:space="preserve">
+    <value>Or via</value>
+  </data>
+  <data name="label_Lbl_Search_User" xml:space="preserve">
+    <value>Start your search by typing on the box</value>
+  </data>
+  <data name="label_Lbl_Social_Links" xml:space="preserve">
+    <value>Social Links</value>
+  </data>
+  <data name="label_Lnk_Choose_file" xml:space="preserve">
+    <value>Choose from file</value>
+  </data>
+  <data name="label_Lnk_Clear_all" xml:space="preserve">
+    <value>Clear all</value>
+  </data>
+  <data name="label_Lnk_Contact_Us" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="label_Lnk_Manage_local" xml:space="preserve">
+    <value>Manage local storage</value>
+  </data>
+  <data name="label_Lnk_sticker" xml:space="preserve">
+    <value>Manage and reorder sticker packs</value>
+  </data>
+  <data name="label_Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="label_Load_More_Messages" xml:space="preserve">
+    <value>Load More Messages</value>
+  </data>
+  <data name="label_location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="label_location_not_available" xml:space="preserve">
+    <value>Location not available</value>
+  </data>
+  <data name="label_Login_using_Facebook" xml:space="preserve">
+    <value>Login using Facebook</value>
+  </data>
+  <data name="label_Login_using_Instagram" xml:space="preserve">
+    <value>Login using Instagram</value>
+  </data>
+  <data name="label_Login_using_Twitter" xml:space="preserve">
+    <value>Login using Twitter</value>
+  </data>
+  <data name="label_Login_using_VK" xml:space="preserve">
+    <value>Login using VK</value>
+  </data>
+  <data name="label_Logout_Button" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="label_M" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="label_Maximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="label_MessageBoxText" xml:space="preserve">
+    <value>Write your Message</value>
+  </data>
+  <data name="label_Message_Notifications" xml:space="preserve">
+    <value>Message Notifications</value>
+  </data>
+  <data name="label_Min" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="label_Minimize" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="label_MSG_searchMessages" xml:space="preserve">
+    <value>Search messages</value>
+  </data>
+  <data name="label_NameTextBox" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="label_offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="label_Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="label_Open_File" xml:space="preserve">
+    <value>Open File</value>
+  </data>
+  <data name="label_PasswordBox" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="label_Pick_color" xml:space="preserve">
+    <value>Pick a color for this conversation</value>
+  </data>
+  <data name="label_Please_check_your_internet" xml:space="preserve">
+    <value>Please check your internet connction</value>
+  </data>
+  <data name="label_Please_write_confirm_password" xml:space="preserve">
+    <value>Please write your Confirm password</value>
+  </data>
+  <data name="label_Please_write_your_Email" xml:space="preserve">
+    <value>Please write your Email</value>
+  </data>
+  <data name="label_Please_write_your_password" xml:space="preserve">
+    <value>Please write your password</value>
+  </data>
+  <data name="label_Please_write_your_username" xml:space="preserve">
+    <value>Please write your username</value>
+  </data>
+  <data name="label_ProfileUserAbout" xml:space="preserve">
+    <value>Hi there i am using </value>
+  </data>
+  <data name="label_ProfileViewLinkButton" xml:space="preserve">
+    <value>View Profile</value>
+  </data>
+  <data name="label_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="label_Registerbutton" xml:space="preserve">
+    <value>Sign UP!</value>
+  </data>
+  <data name="label_RegisterConfirmPasswordTextBox" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="label_RegisterEmailTextBox" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="label_RegisterPasswordTextBox" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="label_RegisterUsernameTextBox" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="label_RightBigText_Signin" xml:space="preserve">
+    <value>Sign Up!</value>
+  </data>
+  <data name="label_RightSmallText_Login" xml:space="preserve">
+    <value>Start your conversation with your family and friends.</value>
+  </data>
+  <data name="label_RightSmallText_Signin" xml:space="preserve">
+    <value>Join us and start adding your friends and more.</value>
+  </data>
+  <data name="label_SearchMesageButton" xml:space="preserve">
+    <value>Search in Conversation</value>
+  </data>
+  <data name="label_SearchMsgButton" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="label_Sec" xml:space="preserve">
+    <value>Sec</value>
+  </data>
+  <data name="label_Sel_Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="label_Sel_language" xml:space="preserve">
+    <value>language</value>
+  </data>
+  <data name="label_Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="label_Send_you_an_audio_file" xml:space="preserve">
+    <value>Send you an audio file</value>
+  </data>
+  <data name="label_Send_you_an_file" xml:space="preserve">
+    <value>Send you an file</value>
+  </data>
+  <data name="label_Send_you_an_gif_image" xml:space="preserve">
+    <value>Send you an gif image</value>
+  </data>
+  <data name="label_Send_you_an_image_file" xml:space="preserve">
+    <value>Send you an image file</value>
+  </data>
+  <data name="label_Send_you_an_sticker_file" xml:space="preserve">
+    <value>Send you an sticker file</value>
+  </data>
+  <data name="label_Send_you_an_video_file" xml:space="preserve">
+    <value>Send you an video file</value>
+  </data>
+  <data name="label_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="label_Settings_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="label_Settings_Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="label_Share_files" xml:space="preserve">
+    <value>Share files with</value>
+  </data>
+  <data name="label_TextBlockMessege" xml:space="preserve">
+    <value>Please Wait..</value>
+  </data>
+  <data name="label_total_size" xml:space="preserve">
+    <value>Total size</value>
+  </data>
+  <data name="label_Txt_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="label_Txt_Birthday" xml:space="preserve">
+    <value>Birthday</value>
+  </data>
+  <data name="label_Txt_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="label_Txt_Facebook" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="label_Txt_Instagram" xml:space="preserve">
+    <value>Instagram</value>
+  </data>
+  <data name="label_txt_Local_storage" xml:space="preserve">
+    <value>Local storage</value>
+  </data>
+  <data name="label_Txt_Phone_number" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="label_Txt_School" xml:space="preserve">
+    <value>School</value>
+  </data>
+  <data name="label_Txt_SearchBoxOnline" xml:space="preserve">
+    <value>Search for Users</value>
+  </data>
+  <data name="label_Txt_searchGifs" xml:space="preserve">
+    <value>Search for Gifs</value>
+  </data>
+  <data name="label_Txt_searchMessages" xml:space="preserve">
+    <value>Search for Users</value>
+  </data>
+  <data name="label_Txt_Search_BoxContact" xml:space="preserve">
+    <value>Search for Users</value>
+  </data>
+  <data name="label_Txt_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="label_Txt_Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="label_Txt_Vk" xml:space="preserve">
+    <value>VKontakte</value>
+  </data>
+  <data name="label_Txt_Website" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="label_Txt_Youtube" xml:space="preserve">
+    <value>YoutubePlay</value>
+  </data>
+  <data name="label_Typping" xml:space="preserve">
+    <value>Typping...</value>
+  </data>
+  <data name="label_Video_call" xml:space="preserve">
+    <value>Video call</value>
+  </data>
+  <data name="lable5_Pinned" xml:space="preserve">
+    <value>Pinned</value>
+  </data>
+  <data name="label5_WhoCanMessageMe" xml:space="preserve">
+    <value>Who can message me?</value>
+  </data>
+  <data name="label5_AddParticipant" xml:space="preserve">
+    <value>Add Participant</value>
+  </data>
+  <data name="label5_ChooseImage" xml:space="preserve">
+    <value>Choose Image</value>
+  </data>
+  <data name="label5_DeleteGroup" xml:space="preserve">
+    <value>Delete Group</value>
+  </data>
+  <data name="label5_Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="label5_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="label5_ExitGroup" xml:space="preserve">
+    <value>Exit Group</value>
+  </data>
+  <data name="label5_Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="label5_EarnUpTo" xml:space="preserve">
+    <value>Earn up to</value>
+  </data>
+  <data name="label5_ForEachUserYourReferToUs" xml:space="preserve">
+    <value>for each user your refer to us</value>
+  </data>
+  <data name="label5_LastPinnedMessage" xml:space="preserve">
+    <value>Last Pinned Message</value>
+  </data>
+  <data name="label5_VoiceMessage" xml:space="preserve">
+    <value>Voice Message</value>
+  </data>
+  <data name="label5_FollowRequests" xml:space="preserve">
+    <value>Follow Requests</value>
+  </data>
+  <data name="label5_ChatNotAllowed" xml:space="preserve">
+    <value>Sorry, chatting with this user is not allowed at this time</value>
+  </data>
+</root>

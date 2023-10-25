@@ -1,0 +1,24 @@
+﻿<Window x:Class="WoWonderDesktop.Forms.SocialLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:properties="clr-namespace:WoWonderDesktop.language"
+        mc:Ignorable="d"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Grayscale"
+        FontFamily="{StaticResource Roboto}"
+        Title="Social Login" Height="600" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <StackPanel x:Name="Panel">
+        <StackPanel Background="#ffffff"  x:Name="LoadingPanel" ZIndex="0" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Visibility="Visible" Margin="0,0,0,0" >
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"                     
+                         Value="35" Foreground="#a52729" IsIndeterminate="True" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 11 0 0" />
+            <Label x:Name="Lbl_Loading" Foreground="Black" Content="{x:Static properties:LocalResources.label_Loading}" Margin="0,8,0,0" HorizontalAlignment="Center" FontSize="16"/>
+            <Label x:Name="Lbl_connection" Foreground="Black" Content="{x:Static properties:LocalResources.label_connection}" Margin="0,8,0,0" HorizontalAlignment="Center" FontSize="16"/>
+        </StackPanel>
+        <StackPanel>
+            <WebBrowser  x:Name="SocialLoginbrowser"  LoadCompleted="SocialLoginbrowser_LoadCompleted" Height="600" Navigated="SocialLoginbrowser_Navigated" VerticalAlignment="Stretch" />
+        </StackPanel>
+    </StackPanel>
+</Window>

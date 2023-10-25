@@ -1,0 +1,168 @@
+﻿<Window x:Class="WoWonderDesktop.Forms.PickColorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoWonderDesktop.Forms"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:properties="clr-namespace:WoWonderDesktop.language"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Grayscale"
+        FontFamily="{StaticResource Roboto}"
+        Title="PickColorWindow" Height="350" Width="345" >
+
+    <Window.Resources>
+        <Style TargetType="{x:Type local:PickColorWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <!-- Outer border with the dropshadow margin -->
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=10}">
+                            <!-- Main window outline -->
+                            <Grid>
+                                <!-- Opacity mask for corners on grid -->
+                                <Border x:Name="Container"
+                                        Background="{StaticResource BackgroundLightBrush}"
+                                        CornerRadius="10" />
+                                <!-- Window border and dropshadown -->
+                                <Border CornerRadius="10"
+                                        Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <!-- The main window content -->
+                                <Grid Loaded="FrameworkElement_OnLoaded">
+                                    <!-- Corner clipping -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+                                    <Grid.RowDefinitions>
+                                        <!-- Title Bar -->
+                                        <RowDefinition Height="2" />
+                                        <!-- Window Content -->
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <!-- Title Bar -->
+                                  
+                                    <!-- Page Content -->
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="6" CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0" />
+    </WindowChrome.WindowChrome>
+   
+    <Border x:Name="Border" Padding="15" >
+        <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2" />
+            <RowDefinition Height="55" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="1">
+                <Label x:Name="Lbl_Pick_color" Content="{x:Static properties:LocalResources.label_Pick_color}" FontWeight="SemiBold" FontFamily="{StaticResource RobotoBold}" FontSize="13" />
+                <Label x:Name="Lbl_Everyone_in_this_conversation" Content="{x:Static properties:LocalResources.label_Everyone_in_this_conversation}" FontWeight="Normal" FontFamily="{StaticResource RobotoRegular}" FontSize="12" />
+            </StackPanel>
+          
+           
+        <Grid Grid.Row="2" Margin="0,14,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+
+                <Border Background="#b582af" BorderBrush="#b582af" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_b582af"  Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#b582af" Background="#b582af" Click="Btn_b582af_OnClick" />
+                </Border>
+
+                <Border Grid.Column="1" Background="#a52729" BorderBrush="#a52729" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_a52729" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#a52729" Background="#a52729" Click="Btn_a52729_OnClick" />
+                </Border>
+                <Border Grid.Column="2" Background="#fc9cde" BorderBrush="#fc9cde" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_fc9cde" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#fc9cde" Background="#fc9cde" Click="Btn_fc9cde_OnClick" />
+                </Border>
+
+                <Border Grid.Column="3" Background="#f9c270" BorderBrush="#f9c270" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_f9c270" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#f9c270" Background="#f9c270" Click="Btn_f9c270_OnClick" />
+                </Border>
+
+                <Border Grid.Column="4" Background="#70a0e0" BorderBrush="#70a0e0" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_70a0e0" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#70a0e0" Background="#70a0e0" Click="Btn_70a0e0_OnClick" />
+                </Border>
+
+                <Border Grid.Column="0" Grid.Row="1" Background="#56c4c5" BorderBrush="#56c4c5" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button  x:Name="Btn_56c4c5" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#56c4c5" Background="#56c4c5" Click="Btn_56c4c5_OnClick" />
+                </Border>
+
+                <Border Grid.Column="1" Grid.Row="1" Background="#f33d4c" BorderBrush="#f33d4c" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_f33d4c" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#f33d4c" Background="#f33d4c" Click="Btn_f33d4c_OnClick" />
+                </Border>
+
+                <Border Grid.Column="2" Grid.Row="1" Background="#a1ce79" BorderBrush="#a1ce79" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_a1ce79" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#a1ce79" Background="#a1ce79" Click="Btn_a1ce79_OnClick" />
+                </Border>
+
+                <Border Grid.Column="3" Grid.Row="1" Background="#a085e2" BorderBrush="#a085e2" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_a085e2" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#a085e2" Background="#a085e2" Click="Btn_a085e2_OnClick" />
+                </Border>
+
+                <Border Grid.Column="4" Grid.Row="1" Background="#ed9e6a" BorderBrush="#ed9e6a" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_ed9e6a"  Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#ed9e6a" Background="#ed9e6a" Click="Btn_ed9e6a_OnClick" />
+                </Border>
+
+                <Border Grid.Column="0" Grid.Row="2" Background="#2b87ce" BorderBrush="#2b87ce" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_2b87ce" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#2b87ce" Background="#2b87ce" Click="Btn_2b87ce_OnClick" />
+                </Border>
+                <Border Grid.Column="1" Grid.Row="2" Background="#f2812b" BorderBrush="#f2812b" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_f2812b" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#f2812b" Background="#f2812b" Click="Btn_f2812b_OnClick" />
+                </Border>
+
+                <Border Grid.Column="2" Grid.Row="2" Background="#0ba05d" BorderBrush="#0ba05d" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_0ba05d" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#0ba05d" Background="#0ba05d" Click="Btn_0ba05d_OnClick" />
+                </Border>
+
+                <Border Grid.Column="3" Grid.Row="2" Background="#0e71ea" BorderBrush="#0e71ea" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_0e71ea" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#0e71ea" Background="#0e71ea" Click="Btn_0e71ea_OnClick" />
+                </Border>
+
+                <Border Grid.Column="4" Grid.Row="2" Background="#aa2294" BorderBrush="#aa2294" BorderThickness="2" Width="52" Height="52" CornerRadius="130">
+                    <Button x:Name="Btn_aa2294" Margin="0,0,0,0" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0"   VerticalAlignment="Center" Width="50" Height="50" RenderTransformOrigin="1.366,0.72" ToolTip="{x:Static properties:LocalResources.label_Send}" BorderBrush="#aa2294" Background="#aa2294" Click="Btn_aa2294_OnClick" />
+                </Border>
+
+
+        </Grid>
+        <Grid Grid.Row="3">
+            <Button x:Name="closeButton" Click="closeButton_Click" Margin="-11,10,0,0" FontWeight="SemiBold" FontStretch="Condensed"
+                    FontFamily="{StaticResource RobotoBold}" Background="Transparent" HorizontalContentAlignment="Right" 
+                    HorizontalAlignment="Right" BorderBrush="Transparent" Content="{x:Static properties:LocalResources.label5_Close}" Foreground="{StaticResource WownderDefaultBrush}" 
+                    FontSize="13" />
+        </Grid>
+
+    </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="BackgroundLight">#efefef</Color>
+    <Color x:Key="BackgroundVeryLight">#fafafa</Color>
+    <Color x:Key="ForegroundMain">#686868</Color>
+    <Color x:Key="ForegroundVeryDark">#000000</Color>
+    <Color x:Key="ForegroundLight">#ffffff</Color>
+    <Color x:Key="ForegroundDark">#444</Color>
+    <Color x:Key="BackgroundForm">#444</Color>
+    <Color x:Key="DefaulColor">#a52729</Color>
+    <Color x:Key="DefaulHoverColor">#cb5e5e</Color>
+    <Color x:Key="DefaulColorTrans">#a5a52729</Color>
+  
+
+
+    <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
+    <SolidColorBrush x:Key="BackgroundVeryLightBrush" Color="{StaticResource BackgroundVeryLight}" />
+    <SolidColorBrush x:Key="ForegroundMainBrush" Color="{StaticResource ForegroundMain}" />
+    <SolidColorBrush x:Key="ForegroundVeryDarkBrush" Color="{StaticResource ForegroundVeryDark}" />
+    <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
+    <SolidColorBrush x:Key="ForegroundDarkBrush" Color="{StaticResource ForegroundDark}" />
+    <SolidColorBrush x:Key="WownderDarkBrush" Color="{StaticResource BackgroundForm}" />
+    <SolidColorBrush x:Key="WownderDefaultBrush" Color="{StaticResource DefaulColor}" />
+    <SolidColorBrush x:Key="WownderDefaulHoverBrush" Color="{StaticResource DefaulHoverColor}" />
+
+    <SolidColorBrush x:Key="WownderDefaultBrushTrans" Color="{StaticResource DefaulColorTrans}" />
+
+
+
+    <Image x:Key="NormalSmile" Source="\Images\Emoji_Icons\Smile.png"/>
+    <Image x:Key="Laughing Emoji" Source="\Images\Emoji_Icons\Laughing Emoji.png"/>
+    <Image x:Key="Happy Face Emoji" Source="\Images\Emoji_Icons\Happy Face Emoji.png"/>
+    <Image x:Key="Cheeky Emoji" Source="\Images\Emoji_Icons\Cheeky Emoji.png"/>
+    <Image x:Key="Crazy Emoji" Source="\Images\Emoji_Icons\Crazy Emoji.png"/>
+    <Image x:Key="Cool Emoji" Source="\Images\Emoji_Icons\Cool Emoji.png"/>
+    <Image x:Key="Wink Emoji" Source="\Images\Emoji_Icons\Wink Emoji.png"/>
+    <Image x:Key="Cringe Emoji" Source="\Images\Emoji_Icons\Cringe Emoji.png"/>
+    <Image x:Key="Flirting Emoji" Source="\Images\Emoji_Icons\Flirting Emoji.png"/>
+    <Image x:Key="Angel Emoji" Source="\Images\Emoji_Icons\Angel Emoji.png"/>
+    <Image x:Key="Crying Emoji" Source="\Images\Emoji_Icons\Crying Emoji.png"/>
+    <Image x:Key="Bawling Emoji" Source="\Images\Emoji_Icons\Bawling Emoji.png"/>
+    <Image x:Key="Sadface Emoji" Source="\Images\Emoji_Icons\Sadface Emoji.png"/>
+    <Image x:Key="Kissing Emoji" Source="\Images\Emoji_Icons\Kissing Emoji.png"/>
+    <Image x:Key="Heart Emoji" Source="\Images\Emoji_Icons\Heart Emoji.png"/>
+    <Image x:Key="Breaking Heart Emoji" Source="\Images\Emoji_Icons\Breaking Heart Emoji.png"/>
+    <Image x:Key="Heart Eyes Emoji" Source="\Images\Emoji_Icons\Heart Eyes Emoji.png"/>
+    <Image x:Key="Star Emoji" Source="\Images\Emoji_Icons\Star Emoji.png"/>
+    <Image x:Key="Surprised Emoji" Source="\Images\Emoji_Icons\Surprised Emoji.png"/>
+    <Image x:Key="Scream Emoji" Source="\Images\Emoji_Icons\Scream Emoji.png"/>
+    <Image x:Key="PainedFaceEmoji" Source="\Images\Emoji_Icons\Pained Face Emoji.png"/>
+    <Image x:Key="Dissatisfied Emoji" Source="\Images\Emoji_Icons\Dissatisfied Emoji.png"/>
+    <Image x:Key="Angry Emoji" Source="\Images\Emoji_Icons\Angry Emoji.png"/>
+    <Image x:Key="Angry Face" Source="\Images\Emoji_Icons\Angry Face.png"/>
+    <Image x:Key="Face With Straight Mouth Emoji" Source="\Images\Emoji_Icons\Face With Straight Mouth Emoji.png"/>
+    <Image x:Key="Puzzled Emoji" Source="\Images\Emoji_Icons\Puzzled Emoji.png"/>
+    <Image x:Key="Straight Faced Emoji" Source="\Images\Emoji_Icons\Straight Faced Emoji.png"/>
+    <Image x:Key="Heavy Exclamation" Source="..\Images\Emoji_Icons\Heavy Exclamation.png"/>
+
+   
+</ResourceDictionary>

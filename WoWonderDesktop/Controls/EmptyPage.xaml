@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="WoWonderDesktop.Controls.EmptyPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             Height="Auto"
+             Width="Auto" 
+             x:Name="_Empty">
+    
+    <StackPanel  Margin="15" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+        <TextBlock x:Name="EmptyIcon" FontFamily="{StaticResource IonIcons}" Foreground="{StaticResource WownderDefaultBrush}" FontSize="130" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+        <TextBlock x:Name="TitleText" FontSize="18" Margin="5" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" />
+
+        <TextBlock x:Name="DescriptionText" FontSize="13" Margin="5"  VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#888888"  />
+
+    </StackPanel>
+
+</UserControl>
